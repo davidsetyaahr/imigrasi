@@ -1,0 +1,87 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap);
+:root{
+    --softWhite: #ecedf0;
+    --grey: #9b9b9b;
+    --blue: #39499f;
+    --yellow: #fcb041;
+}
+body {
+    background: var(--softWhite);
+    font-family: "Poppins", sans-serif;
+    color : var(--grey)
+}
+.color-blue{
+    color : var(--blue);
+}
+.color-yellow{
+    color : var(--yellow);
+}
+.card{
+    border:none;
+    cursor: pointer;
+    transition: all .5s ease ;
+    -webkit-transition: all .5s ease ;
+    -moz-transition: all .5s ease ;
+    -o-transition: all .5s ease ;
+}
+.card:hover{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+.card img{
+    margin : auto;
+    width: 70%;
+}
+.card.active{
+    border : 3px solid var(--blue);
+    color : var(--blue);
+}
+.btn-yellow{
+    background: var(--yellow);
+    color : var(--blue);
+    border-radius: .25rem;
+    transition: all .5s ease ;
+    -webkit-transition: all .5s ease ;
+    -moz-transition: all .5s ease ;
+    -o-transition: all .5s ease ;
+}
+.custom-nav-tabs{
+    border : none
+}
+.custom-nav-tabs a{
+    background: white !important;
+    color : var(--grey)  !important;
+    padding : 1rem 1.5rem;
+    border-radius: 0px !important;
+    border : none !important;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+.custom-nav-tabs a:first-child{
+    border-top-left-radius: 20px !important ;
+}
+.custom-nav-tabs a:last-child{
+    border-top-right-radius: 20px !important ;
+}
+.custom-nav-tabs a.active{
+    background: var(--blue) !important;
+    color : white  !important;
+}
+.custom-tab-content{
+    background: white;
+    border-radius : 0px 10px 10px 10px;
+}
+label{
+    font-weight: bold;
+}
+.form-control{
+    height: calc(2em + .75rem + 2px);    
+}
+.home-step1{
+    height: 100vh    
+}
+.btn-default{
+    border : 2px solid var(--softWhite)
+}
+.btn-blue{
+    background: var(--blue);
+    color : white;
+}
