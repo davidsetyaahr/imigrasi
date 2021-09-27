@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2021 at 03:57 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Generation Time: Sep 28, 2021 at 12:57 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -70,6 +70,7 @@ CREATE TABLE `pengajuan` (
   `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
   `no_pengajuan` varchar(100) NOT NULL,
   `no_surat_kehilangan` varchar(100) NOT NULL,
+  `tgl_pengajuan` datetime NOT NULL,
   `status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

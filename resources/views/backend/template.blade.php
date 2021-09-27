@@ -88,10 +88,10 @@
               data-parent="#accordionSidebar"
             >
               <div class="py-2 collapse-inner rounded">
-                <a class="nav-link" href="{{url('general-ledger/buku-besar')}}">
+                <a class="nav-link" href="{{url('pengajuan_passport_rusak')}}">
                   <span>Paspor Rusak</span>
                 </a>
-                <a class="nav-link" href="{{url('general-ledger/buku-besar')}}">
+                <a class="nav-link" href="{{url('pengajuan_passport_hilang')}}">
                   <span>Paspor Hilang</span>
                 </a>
               </div>
