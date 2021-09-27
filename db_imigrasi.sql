@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2021 at 04:10 PM
+-- Generation Time: Sep 27, 2021 at 03:57 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -33,6 +33,25 @@ CREATE TABLE `jawab_pertanyaan` (
   `id_pertanyaan` int(4) NOT NULL,
   `jawaban` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('davidsetya24@gmail.com', '$2y$10$p.FNo19LUq6/3Hx5KlKp7.GB.CNBPiEUo54/LmBZiQ5IVd6OyvKjW', '2021-09-26 07:27:17');
 
 -- --------------------------------------------------------
 
@@ -87,11 +106,23 @@ CREATE TABLE `pertanyaan` (
 --
 
 CREATE TABLE `users` (
-  `id_user` int(3) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `email` varchar(70) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `nama` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `nama`, `email`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'administrator@mail.com', '$2y$10$Waq71S2gE1dY1uTptzhIueezsXeOR5v6rLf5xQ92Gd7Lph3zWkStq', NULL, NULL, '2021-06-29 07:32:14', '2021-06-29 07:32:14'),
+(5, 'Administrator', 'davidsetya24@gmail.com', '$2y$10$Waq71S2gE1dY1uTptzhIueezsXeOR5v6rLf5xQ92Gd7Lph3zWkStq', NULL, NULL, '2021-06-29 07:32:14', '2021-06-29 07:32:14');
 
 --
 -- Indexes for dumped tables
@@ -102,6 +133,12 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `jawab_pertanyaan`
   ADD PRIMARY KEY (`id_jawab`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indexes for table `pengajuan`
@@ -119,7 +156,8 @@ ALTER TABLE `pertanyaan`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -147,7 +185,7 @@ ALTER TABLE `pertanyaan`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

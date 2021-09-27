@@ -11,30 +11,30 @@
 </head>
 <body>
     <form action="">
-        <div class="d-flex align-items-center home-step1" id="home">
+        <div class="d-flex align-items-center mt-5" id="home">
             <div class="container">
                 <div class="row">
                     <div class="col text-center">
                         <img src="{{asset('frontend/img/logo-imigrasi.png')}}" width="80px" alt="" srcset="">
-                        <h3 class="mt-3 color-blue font-weight-bold">Selamat Datang Di <br> Aplikasi Pengajuan Kendala Passport </h3>
+                        <h4 class="mt-3 color-blue font-weight-bold">Selamat Datang Di <br> Aplikasi PAPALASAK <br> (Penggantian Paspor Hilang dan Rusak) </h4>
                     </div>
                 </div>
                 <div id="pick">
                     <br>
                     <h5 class="text-center mb-3">Pilih Disini:</h5>
                     <div class="row mt-2 justify-content-center">
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-6">
                             <div data-tipe="PHilang" class="card p-3 text-center">
                                 <img src="{{asset('frontend/img/passport1.png')}}" alt="">
                                 <br>
-                                <h6 class="mb-0">Passport Hilang</h6>
+                                <h6 class="mb-0">Paspor Hilang</h6>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-6">
                             <div data-tipe="PRusak" class="card p-3 text-center">
                                 <img src="{{asset('frontend/img/passport2.png')}}" alt="">
                                 <br>
-                                <h6 class="mb-0">Passport Rusak</h6>
+                                <h6 class="mb-0">Paspor Rusak</h6>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <input type="hidden" value="" name="tipe" id="tipe">
-        <div id="datadiri" class="container mt-5">
+        <div id="datadiri" class="d-none container mt-5">
             <div class="row">
                 <div class="col">
                     <div class="nav nav-tabs custom-nav-tabs" id="nav-tab" role="tablist">
@@ -88,16 +88,15 @@
             $("#btn-datadiri").click(function(e){
                 e.preventDefault();
                 $("#home").removeClass('home-step1')
-                $("#home").addClass('mt-5')
                 $("#pick").hide()
-                $("#datadiri").show()
+                $("#datadiri").removeClass('d-none')
+                $("#datadiri").fadeIn()
             })
             $("#back").click(function(e){
                 e.preventDefault()
                 $("#home").addClass('home-step1')
-                $("#home").removeClass('mt-5')
                 $("#datadiri").hide()
-                $("#pick").show()
+                $("#pick").fadeIn()
             })
         })
     </script>

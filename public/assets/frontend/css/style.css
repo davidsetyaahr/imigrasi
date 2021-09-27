@@ -75,9 +75,6 @@ label{
 .form-control{
     height: calc(2em + .75rem + 2px);    
 }
-.home-step1{
-    height: 100vh    
-}
 .btn-default{
     border : 2px solid var(--softWhite)
 }
