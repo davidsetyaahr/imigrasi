@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PassporthilangController extends Controller
-
+class PassportrusakController extends Controller
 {
     public function index()
     {
-        return view('backend/passport-hilang/p-hilang');
+        return view('backend/passport-rusak/p-rusak');
     }
 }

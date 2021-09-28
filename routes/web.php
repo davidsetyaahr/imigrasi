@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PenjadwalanController;
 use App\Http\Controllers\PassporthilangController;
+use App\Http\Controllers\PassportrusakController;
+use App\Http\Controllers\ArsippemeriksaanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,21 +28,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::group(['prefix' => 'jadwal'], function () {
         Route::get('/', [PenjadwalanController::class,'index']);
     });
-    // Route::group(['prefix' => 'pengajuan_passport_hilang'], function () {
-    //     Route::get('/', [PassporthilangController::class,'index']);
-    // });
-    // Route::group(['prefix' => 'pengajuan_passport_rusak'], function () {
-    //     Route::get('/', [PassportrusakController::class,'index']);
-    // });
-});
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    // Route::group(['prefix' => 'jadwal'], function () {
-    //     Route::get('/', [PenjadwalanController::class,'index']);
-    // });
-    Route::group(['prefix' => 'pengajuan_passport_hilang'], function () {
+    Route::group(['prefix' => 'pengajuan-passport-hilang'], function () {
         Route::get('/', [PassporthilangController::class,'index']);
     });
-    // Route::group(['prefix' => 'pengajuan_passport_rusak'], function () {
-    //     Route::get('/', [PassportrusakController::class,'index']);
-    // });
+    Route::group(['prefix' => 'pengajuan-passport-rusak'], function () {
+        Route::get('/', [PassportrusakController::class,'index']);
+    });
+    Route::group(['prefix' => 'arsip-pemeriksaan'], function () {
+        Route::get('/', [ArsippemeriksaanController::class,'index']);
+    });
 });

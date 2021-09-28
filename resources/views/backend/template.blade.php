@@ -88,10 +88,10 @@
               data-parent="#accordionSidebar"
             >
               <div class="py-2 collapse-inner rounded">
-                <a class="nav-link" href="{{url('pengajuan_passport_rusak')}}">
+                <a class="nav-link" href="{{url('pengajuan-passport-rusak')}}">
                   <span>Paspor Rusak</span>
                 </a>
-                <a class="nav-link" href="{{url('pengajuan_passport_hilang')}}">
+                <a class="nav-link" href="{{url('pengajuan-passport-hilang')}}">
                   <span>Paspor Hilang</span>
                 </a>
               </div>
@@ -104,7 +104,7 @@
             >
           </li>
           <li class="nav-item {{Request::segment(1) == 'arsip' ? 'active' : ''}}">
-            <a class="nav-link" href="{{url('home')}}">
+            <a class="nav-link" href="{{url('arsip-pemeriksaan')}}">
               <i class="fas fa-fw fa-file-archive"></i>
               <span>Arsip Pemeriksaan</span></a
             >
