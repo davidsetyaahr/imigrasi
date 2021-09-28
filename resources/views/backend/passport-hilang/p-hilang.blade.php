@@ -21,17 +21,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no=1;?>
+                            @foreach ($philang as $data)
                             <tr>
-                                <td>1</td>
-                                <td>David Setya</td>
-                                <td>DR/XII/D-RG/...</td>
-                                <td>35213888229910001</td>
-                                <td>Laki-laki</td>
-                                <td>082421124222</td>
-                                <td>david321@gmail.com</td>
-                                <td>11 Oktober 2021</td>
-                                <td width="30%"><a href="" class="btn btn-success">Edit</a> <a href="" class="btn btn-danger">Delete</a></td>
+                                <td>{{ $no }}</td>
+                                <td>{{ $data->nama }}</td>
+                                <td>{{ $data->no_surat_kehilangan }}{{ $data->no_pengajuan }}</td>
+                                <td>{{ $data->nik }}}}</td>
+                                <td>{{ $data->jenis_kelamin }}</td>
+                                <td>{{ $data->no_hp }}</td>
+                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->tgl_pengajuan }}</td>
+                                <td width="30%"><a href="/edit-p_hilang/{{ $data->id_pengajuan }}" class="btn btn-success">Edit</a> <a href="hapus-p_hilang/{{ $data->id_pengajuan }}" class="btn btn-danger">Delete</a></td>
                             </tr>
+                            <?php $no++ ;?>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -17,7 +17,6 @@
                                 <th>Nama</th>
                                 <th>Nomor Surat Tanda Kehilangan</th>
                                 <th>NIK</th>
-                                <th>Jenis Kelamin</th>
                                 <th>No. Telp</th>
                                 <th>Email</th>
                                 <th>Tanggal</th>
@@ -30,7 +29,6 @@
                                 <td>David Setya</td>
                                 <td>DR/XII/D-RG/...</td>
                                 <td>35213888229910001</td>
-                                <td>Laki-laki</td>
                                 <td>082421124222</td>
                                 <td>david321@gmail.com</td>
                                 <td>11 Oktober 2021</td>
