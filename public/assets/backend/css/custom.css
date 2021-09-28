@@ -544,7 +544,11 @@ a:hover {
     text-align:center;
     border: 1px solid #3c4099;
 }
-.jadwal-clicked{
+.card-jadwal .card-header{
+	cursor: pointer;
+}
+.card-jadwal .jadwal-clicked{
 	background: #3c4099;
 	color : white;
+
 }

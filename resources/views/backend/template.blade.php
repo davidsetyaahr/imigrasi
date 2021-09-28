@@ -185,7 +185,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <div class="h4 mb-0 solid-color font-weight-bold infopage">
                   <?php 
-                    $pageSegment = !empty(Request::segment(2)) ? Request::segment(2) : 'Dashboard';
+                    $pageSegment = Request::segment(1);
                   ?>
                   {{ ucwords( str_replace("-"," ",$pageSegment) ) }}
             </div>

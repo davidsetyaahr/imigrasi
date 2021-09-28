@@ -27,6 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::group(['prefix' => 'jadwal'], function () {
         Route::get('/', [PenjadwalanController::class,'index']);
+        Route::get('detail', [PenjadwalanController::class,'detail']);
     });
     Route::group(['prefix' => 'pengajuan-passport-hilang'], function () {
         Route::get('/', [PassporthilangController::class,'index']);
