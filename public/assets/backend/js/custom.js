@@ -51,7 +51,7 @@ $(document).ready(function() {
                                 <td>${data.tipe=='Philang' ? 'Paspor Hilang' : 'Paspor Rusak' }</td>
                                 <td>
                                 ${
-                                    todayYmd()==tgl ? "<a href='' class='btn btn-primary'>Lakukan Pemeriksaan</a>" : "<a href='' class='btn btn-success'>Edit</a>" 
+                                    todayYmd()>=tgl ? "<a href='' class='btn btn-primary'>Lakukan Pemeriksaan</a>" : "<a href='' class='btn btn-success'>Edit</a> <a href='' class='btn btn-danger'>Delete</a>" 
                                 }
                                 </td>
                             </tr>
@@ -60,6 +60,34 @@ $(document).ready(function() {
                 }
             })
         }
+    })
+
+    $(".checkPengajuan").change(function(){
+        if($('.checkPengajuan').length!=$('.checkPengajuan:checked').length){
+            $("#checkAll").prop('checked',false)
+        }
+        else{
+            $("#checkAll").prop('checked',true)
+        }
+        
+        if($('.checkPengajuan:checked').length>0){
+            var thisVal = $(this).val();
+            $("#penjadwalan").fadeIn();
+        }
+        else{
+            $("#penjadwalan").fadeOut();
+        }
+    })
+
+    $("#checkAll").change(function(){
+        if($(this).is(':checked')==true){
+            $(".checkPengajuan").prop('checked',true)
+            $("#penjadwalan").fadeIn();
+        }
+        else{
+            $(".checkPengajuan").prop('checked',false)
+            $("#penjadwalan").fadeOut();
+        }     
     })
 
     function indoDate(date){

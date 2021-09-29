@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2021 at 12:57 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Generation Time: Sep 29, 2021 at 03:30 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,10 +69,18 @@ CREATE TABLE `pengajuan` (
   `NIK` varchar(18) NOT NULL,
   `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
   `no_pengajuan` varchar(100) NOT NULL,
-  `no_surat_kehilangan` varchar(100) NOT NULL,
   `tgl_pengajuan` datetime NOT NULL,
+  `tgl_pemeriksaan` datetime DEFAULT NULL,
   `status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengajuan`
+--
+
+INSERT INTO `pengajuan` (`id_pengajuan`, `tipe`, `nama`, `email`, `no_hp`, `alamat`, `NIK`, `jenis_kelamin`, `no_pengajuan`, `tgl_pengajuan`, `tgl_pemeriksaan`, `status`) VALUES
+(1, 'PHilang', 'David', 'davidsetya24@gmail.com', '085210853778 ', 'Bondowoso', '123123123', 'laki-laki', '123', '2021-09-28 00:46:44', NULL, '0'),
+(2, 'PHilang', 'Setya', 'davidsetya24@gmail.com', '085210853778 ', 'Bondowoso', '123123123', 'laki-laki', '122', '2021-09-27 00:46:44', NULL, '0');
 
 -- --------------------------------------------------------
 
@@ -82,9 +90,17 @@ CREATE TABLE `pengajuan` (
 
 CREATE TABLE `penjadwalan` (
   `id_jadwal` int(4) NOT NULL,
-  `tanngal` datetime NOT NULL,
+  `tanggal` date NOT NULL,
   `id_pengajuan` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penjadwalan`
+--
+
+INSERT INTO `penjadwalan` (`id_jadwal`, `tanggal`, `id_pengajuan`) VALUES
+(1, '2021-09-29', 1),
+(2, '2021-10-02', 2);
 
 -- --------------------------------------------------------
 
@@ -99,6 +115,23 @@ CREATE TABLE `pertanyaan` (
   `is_p_hilang` enum('0','1') NOT NULL,
   `status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pertanyaan`
+--
+
+INSERT INTO `pertanyaan` (`id_pertanyaan`, `pertanyaan`, `is_p_rusak`, `is_p_hilang`, `status`) VALUES
+(1, 'Apakah saudara sekarang ini dalam keadaan sehat jasmani dan rohani?', '1', '1', '1'),
+(2, 'Bersediakah saudara untuk memberikan keterangan dengan sebeanar-benarnya?', '1', '1', '1'),
+(3, 'Apakah saudara bisa berbahasa indonesia?', '1', '1', '1'),
+(4, 'Apakah saudara memerlukan penerjemah?', '1', '1', '1'),
+(5, 'Ceritakan riwayat hidup anda secara singkat', '1', '1', '1'),
+(6, 'Berapa nomor Paspor, masa berlaku dan dimana paspor tersebut diterbitkan?', '1', '1', '1'),
+(7, 'Ceritakan perihal tentang rusaknya paspor tersebut?', '1', '0', '1'),
+(8, 'Ceritakan perihal tentang hilangnya paspor tersebut?', '0', '1', '1'),
+(9, 'Berapa nomor surat kehilangan yang saudara dapatkan dari kepolisian?', '0', '1', '1'),
+(10, 'Mengapa saudara saat ini mengajukan permohonan paspor?', '1', '1', '1'),
+(11, 'Apakah keterangan yang saudara berikan benar dan dapat dipertanggung jawabkan?', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -148,6 +181,12 @@ ALTER TABLE `pengajuan`
   ADD PRIMARY KEY (`id_pengajuan`);
 
 --
+-- Indexes for table `penjadwalan`
+--
+ALTER TABLE `penjadwalan`
+  ADD PRIMARY KEY (`id_jadwal`);
+
+--
 -- Indexes for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
@@ -174,13 +213,19 @@ ALTER TABLE `jawab_pertanyaan`
 -- AUTO_INCREMENT for table `pengajuan`
 --
 ALTER TABLE `pengajuan`
-  MODIFY `id_pengajuan` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengajuan` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `penjadwalan`
+--
+ALTER TABLE `penjadwalan`
+  MODIFY `id_jadwal` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
-  MODIFY `id_pertanyaan` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pertanyaan` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`

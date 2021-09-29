@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\PengajuanModel;
+use App\Models\PenjadwalanModel;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['pemeriksaanHariIni'] = PenjadwalanModel::where('tanggal',date('Y-m-d'))->count();
+        $data['hilang'] = PengajuanModel::where('tipe','Philang')->count();
+        $data['rusak'] = PengajuanModel::where('tipe','Prusak')->count();
+        return view('home',$data);
     }
 }

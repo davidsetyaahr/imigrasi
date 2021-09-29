@@ -58,19 +58,48 @@
             </div>
             <div class="tab-content custom-tab-content" id="nav-tabContent">
                 <div class="tab-pane  px-4 py-4 fade show active" id="nav-datadiri" role="tabpanel" aria-labelledby="nav-datadiri-tab">
-                    <label for="">Label</label>
-                    <input type="text" class="form-control">
+                    <label for="">Nama Lengkap (Sesuai Paspor)</label>
+                    <input type="text" name="nama" class="form-control">
+                    <br>
+                    <label for="">NIK</label>
+                    <input type="text" name="nik" class="form-control">
+                    <br>
+                    <label for="">Email</label>
+                    <input type="email" name="email" class="form-control">
+                    <br>
+                    <label for="">No Hp</label>
+                    <input type="text" name="no_hp" class="form-control">
+                    <br>
+                    <label for="">Alamat</label>
+                    <textarea name="alamat" class="form-control" rows="5"></textarea>
+                    <br>
+                    <label for="">Jenis Kelamin</label>
+                    <br>
+                    <input type="radio" name="jenis_kelamin" id="lk" value="laki-laki"> <label for="lk"> Laki Laki</label> &nbsp;
+                    <input type="radio" name="jenis_kelamin" id="pr" value="perempuan"> <label for="pr"> Perempuan</label>
+                    <br>
                 </div>
                 <div class="tab-pane  px-4 py-4 fade" id="nav-pertanyaan" role="tabpanel" aria-labelledby="nav-pertanyaan-tab">
-                    <label for="">Label</label>
-                    <input type="text" class="form-control">
-                    <br>
+                    <div id="pRusak" style="display: none">
+                        @foreach ($pRusak as $data)
+                            <label for="">{{$data->pertanyaan}}</label>
+                            <input type="text" class="form-control">
+                            <br>
+                        @endforeach
+                    </div>
+                    <div id="pHilang" style="display: none">
+                        @foreach ($pHilang as $data)
+                            <label for="">{{$data->pertanyaan}}</label>
+                            <input type="text" class="form-control">
+                            <br>
+                        @endforeach
+                    </div>
                     <button type="submit" class="btn btn-blue px-3 py-2"><span class="fa fa-save"></span> Kirim</button>
                     <button type="submit" class="btn btn-default px-3 py-2"><span class="fa fa-times"></span> Reset</button>
                 </div>
             </div>
             <center>
-                <a href="#" id="back" class="mt-5 d-block color-yellow"><span class="fa fa-long-arrow-alt-left"></span> Kembali</a>
+                <a href="#" id="back" class="my-5 d-block color-yellow"><span class="fa fa-long-arrow-alt-left"></span> Kembali</a>
             </center>
         </div>
     </form>    
@@ -84,6 +113,15 @@
                 $(this).addClass("active")
                 $("#tipe").val(tipe)
                 $("#btn-datadiri").removeClass('d-none')
+
+                if(tipe=='PRusak'){
+                    $("#pHilang").fadeOut()
+                    $("#pRusak").fadeIn()
+                }
+                else{
+                    $("#pRusak").fadeOut()
+                    $("#pHilang").fadeIn()
+                }
             })
             $("#btn-datadiri").click(function(e){
                 e.preventDefault();

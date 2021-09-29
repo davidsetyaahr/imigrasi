@@ -3,42 +3,49 @@
 @section('container')
 <div class="row">
     <div class="col-md-12 mb-4">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-custom td-grey">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama</th>
-                                <th>Nomor Surat Tanda Kehilangan</th>
-                                <th>NIK</th>
-                                <th>Jenis Kelamin</th>
-                                <th>No. Telp</th>
-                                <th>Email</th>
-                                <th>Tanggal</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no=1;?>
-                            @foreach ($philang as $data)
-                            <tr>
-                                <td>{{ $no }}</td>
-                                <td>{{ $data->nama }}</td>
-                                <td>{{ $data->no_surat_kehilangan }}{{ $data->no_pengajuan }}</td>
-                                <td>{{ $data->nik }}}}</td>
-                                <td>{{ $data->jenis_kelamin }}</td>
-                                <td>{{ $data->no_hp }}</td>
-                                <td>{{ $data->email }}</td>
-                                <td>{{ $data->tgl_pengajuan }}</td>
-                                <td width="30%"><a href="/edit-p_hilang/{{ $data->id_pengajuan }}" class="btn btn-success">Edit</a> <a href="hapus-p_hilang/{{ $data->id_pengajuan }}" class="btn btn-danger">Delete</a></td>
-                            </tr>
-                            <?php $no++ ;?>
-                            @endforeach
-                        </tbody>
-                    </table>
+        <div class="table-responsive">
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" name="" id="checkAll"></th>
+                        <th>#</th>
+                        <th>Nama</th>
+                        <th>NIK</th>
+                        <th>No. Telp</th>
+                        <th>Email</th>
+                        <th>Tanggal</th>
+                        <th width="15%">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $no=1;?>
+                    @foreach ($philang as $data)
+                    <tr>
+                        <th><input type="checkbox" name="" value="{{$data->id_pengajuan}}" class="checkPengajuan"></th>
+                        <td>{{ $no }}</td>
+                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->nik }}</td>
+                        <td>{{ $data->no_hp }}</td>
+                        <td>{{ $data->email }}</td>
+                        <td>{{ $data->tgl_pengajuan }}</td>
+                        <td><a href="/edit-p_hilang/{{ $data->id_pengajuan }}" class="btn btn-success">Edit</a> <a href="hapus-p_hilang/{{ $data->id_pengajuan }}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                    <?php $no++ ;?>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="row" id="penjadwalan" style="display: none">
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="Pilih Jadwal Pemeriksaan" name="" id="" class="form-control datepicker">
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"><span class="fa fa-calendar"></span></span>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-2">
+                <a href="" class="btn btn-primary">Jadwalkan</a>
             </div>
         </div>
     </div>

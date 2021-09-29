@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\PertanyaanModel;
 use Illuminate\Http\Request;
 
 class PengajuanController extends Controller
@@ -13,7 +13,9 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        return view('frontend/pengajuan');
+        $data['pRusak'] = PertanyaanModel::where('is_p_rusak','1')->where('status','1')->get();
+        $data['pHilang'] = PertanyaanModel::where('is_p_hilang','1')->where('status','1')->get();
+        return view('frontend/pengajuan',$data);
     }
 
     /**
