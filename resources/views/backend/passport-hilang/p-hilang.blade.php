@@ -2,7 +2,17 @@
 
 @section('container')
 <div class="row">
+    @if (session('status'))
+    <div class="col alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     <div class="col-md-12 mb-4">
+        <form action="{{url('jadwal/store')}}" id="submitConfirm" data-info="Penjadawalan Akan Dilakukan Kepada Item Yang Terpilih." method="post">
+            @csrf
         <div class="table-responsive">
             <table class="table table-custom">
                 <thead>
@@ -19,10 +29,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (count($philang)==0)
+                        <tr>
+                            <th colspan="8" class="text-center">Data Kosong</th>                            
+                        </tr>
+                    @endif
+                
                     <?php $no=1;?>
                     @foreach ($philang as $data)
                     <tr>
-                        <th><input type="checkbox" name="" value="{{$data->id_pengajuan}}" class="checkPengajuan"></th>
+                        <th><input type="checkbox" name="id_pengajuan[]" value="{{$data->id_pengajuan}}" class="checkPengajuan"></th>
                         <td>{{ $no }}</td>
                         <td>{{ $data->nama }}</td>
                         <td>{{ $data->nik }}</td>
@@ -49,16 +65,17 @@
         <div class="row" id="penjadwalan" style="display: none">
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <input type="text" placeholder="Pilih Jadwal Pemeriksaan" name="" id="" class="form-control datepicker">
+                    <input type="text" placeholder="Pilih Jadwal Pemeriksaan" name="tanggal" id="" class="form-control datepicker">
                     <div class="input-group-append">
-                      <span class="input-group-text" id="basic-addon2"><span class="fa fa-calendar"></span></span>
+                        <span class="input-group-text" id="basic-addon2"><span class="fa fa-calendar"></span></span>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
-                <a href="" class="btn btn-primary">Jadwalkan</a>
+                <button type="submit" class="btn btn-primary">Jadwalkan</button>
             </div>
         </div>
+        </form>
     </div>
 </div>
 

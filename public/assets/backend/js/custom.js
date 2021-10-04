@@ -40,6 +40,7 @@ $(document).ready(function() {
                     res = JSON.parse(res)
                     $.each(res, function(key,data){
                         var i = key+1
+                        var btn = todayYmd()>=tgl ? '<a class="dropdown-item" href="#">Lakukan Pemeriksaan</a>' : '<a class="dropdown-item" href="#">Edit</a>'
                         $(table+" tbody").append(`
                             <tr>
                                 <td>${i}</td>
@@ -48,14 +49,26 @@ $(document).ready(function() {
                                 <td>${data.email}</td>
                                 <td>${data.no_hp}</td>
                                 <td>${data.alamat}</td>
-                                <td>${data.tipe=='Philang' ? 'Paspor Hilang' : 'Paspor Rusak' }</td>
+                                <td>${data.tipe=='PHilang' ? 'Paspor Hilang' : 'Paspor Rusak' }</td>
                                 <td>
                                 ${
-                                    todayYmd()>=tgl ? "<a href='' class='btn btn-primary'>Lakukan Pemeriksaan</a>" : "<a href='' class='btn btn-success'>Edit</a> <a href='' class='btn btn-danger'>Delete</a>" 
+                                    `<div class="dropdown show">
+                                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opsi
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            ${btn}
+                                            <a href="jadwal/batal/${data.id_jadwal}" class="dropdown-item confirm-alert" data-alert="Penjadwalan Pengecekan Akan Dibatalkan" href="#">Batalkan Penjadwalan</a>
+                                        </div>
+                                    </div>`
                                 }
                                 </td>
                             </tr>
                         `)
+                        $(".confirm-alert").click(function(e) {
+                            e.preventDefault();
+                            confirmAlert($(this))
+                        });
                     })
                 }
             })
@@ -80,7 +93,7 @@ $(document).ready(function() {
     })
 
     $("#checkAll").change(function(){
-        if($(this).is(':checked')==true){
+        if($(this).is(':checked')==true && $('.checkPengajuan').length!=0){
             $(".checkPengajuan").prop('checked',true)
             $("#penjadwalan").fadeIn();
         }
@@ -98,18 +111,16 @@ $(document).ready(function() {
 
         return newFormat;
     }
-    
-	$(".confirm-alert").click(function(e) {
-		e.preventDefault();
-		var url = $(this).attr("href");
-		var text = $(this).data('alert')
+    function confirmAlert(thisAttr){
+		var url = thisAttr.attr("href");
+		var text = thisAttr.data('alert')
 		swal(
 			{
 				title: "Apakah anda yakin?",
 				text: text,
 				type: "warning",
 				showCancelButton: true,
-				confirmButtonColor: "#3c4099",
+				confirmButtonColor: "#ffc107",
 				confirmButtonText: 'Submit',
 				closeOnConfirm: false
 			},
@@ -117,6 +128,10 @@ $(document).ready(function() {
 				window.location = url;
 			}
 		);
+    }
+	$(".confirm-alert").click(function(e) {
+		e.preventDefault();
+        confirmAlert($(this))
 	});
 	$("#submitConfirm").submit(function(e) {
         e.preventDefault();
@@ -129,8 +144,8 @@ $(document).ready(function() {
 				text: info,
 				type: "warning",
 				showCancelButton: true,
-				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "Yakin",
+				confirmButtonColor: "#3c4099",
+				confirmButtonText: "Submit",
 				closeOnConfirm: false
 			},
 			function() {

@@ -97,7 +97,7 @@ body {
 	background: #ebeeef !important;
 }
 .bg-primary {
-	background: #3c4099 !important;
+	background-color: #3c4099 !important;
 }
 .copyright a{
 	color : #8ab928;
@@ -163,7 +163,7 @@ body {
 	border-radius: 0px;
 }
 .btn-primary{
-	background: #3c4099;
+	background-color: #3c4099 !important;
 	border-color: #3c4099;
 }
 .btn-primary:hover {

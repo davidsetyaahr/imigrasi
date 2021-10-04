@@ -25,8 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $data['pemeriksaanHariIni'] = PenjadwalanModel::where('tanggal',date('Y-m-d'))->count();
-        $data['hilang'] = PengajuanModel::where('tipe','Philang')->count();
-        $data['rusak'] = PengajuanModel::where('tipe','Prusak')->count();
+        $data['hilang'] = PengajuanModel::where('tipe','Philang')->where('status','0')->count();
+        $data['rusak'] = PengajuanModel::where('tipe','Prusak')->where('status','0')->count();
         return view('home',$data);
     }
 }
