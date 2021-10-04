@@ -31,9 +31,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     });
     Route::group(['prefix' => 'pengajuan-passport-hilang'], function () {
         Route::get('/', [PassporthilangController::class,'index']);
+        Route::get('/edit-passport-hilang/{id}', [PassporthilangController::class,'edit']);
+        Route::post('/update', [PassporthilangController::class,'update']);
+        Route::get('/hapus-passport-hilang/{id}', [PassporthilangController::class,'destroy']);
+
     });
     Route::group(['prefix' => 'pengajuan-passport-rusak'], function () {
         Route::get('/', [PassportrusakController::class,'index']);
+        Route::get('/edit-passport-rusak/{id}', [PassportrusakController::class,'edit']);
+        Route::post('/update', [PassportrusakController::class,'update']);
+        Route::get('/hapus-passport-rusak/{id}', [PassportrusakController::class,'destroy']);
     });
     Route::group(['prefix' => 'arsip-pemeriksaan'], function () {
         Route::get('/', [ArsippemeriksaanController::class,'index']);

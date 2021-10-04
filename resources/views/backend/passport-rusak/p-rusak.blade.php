@@ -13,21 +13,35 @@
                         <th>NIK</th>
                         <th>No. Telp</th>
                         <th>Email</th>
-                        <th>Tanggal</th>
+                        <th>Tanggal Pengajuan</th>
+                        <th>Tipe</th>
                         <th width="15%">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $no=1;?>
+                    @foreach ($prusak as $data)
                     <tr>
-                        <th><input type="checkbox" name="" value="1" class="checkPengajuan"></th>
-                        <td>1</td>
-                        <td>David Setya</td>
-                        <td>35213888229910001</td>
-                        <td>082421124222</td>
-                        <td>david321@gmail.com</td>
-                        <td>11 Oktober 2021</td>
-                        <td><a href="" class="btn btn-success">Edit</a> <a href="" class="btn btn-danger">Delete</a></td>
+                        <th><input type="checkbox" name="" value="{{$data->id_pengajuan}}" class="checkPengajuan"></th>
+                        <td>{{ $no }}</td>
+                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->nik }}</td>
+                        <td>{{ $data->no_hp }}</td>
+                        <td>{{ $data->email }}</td>
+                        <td><?php
+                            $date = new DateTime($data->tgl_pengajuan);
+                            echo $date->format("d-m-Y");
+                            ?>
+                        </td>
+                        @if($data->tipe =='PHilang')                  
+                            <td>Pengajuan Kehilangan</td>
+                        @else
+                            <td>Pengajuan Rusak</td>
+                        @endif
+                        <td><a href="pengajuan-passport-rusak/edit-passport-rusak/{{ $data->id_pengajuan }}" class="btn btn-success">Edit</a> <a href="pengajuan-passport-rusak/hapus-passport-rusak/{{ $data->id_pengajuan }}" class="btn btn-danger">Delete</a></td>
                     </tr>
+                    <?php $no++ ;?>
+                    @endforeach
                 </tbody>
             </table>
         </div>

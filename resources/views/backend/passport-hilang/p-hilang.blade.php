@@ -13,7 +13,8 @@
                         <th>NIK</th>
                         <th>No. Telp</th>
                         <th>Email</th>
-                        <th>Tanggal</th>
+                        <th>Tanggal Pengajuan</th>
+                        <th>Tipe</th>
                         <th width="15%">Aksi</th>
                     </tr>
                 </thead>
@@ -27,8 +28,18 @@
                         <td>{{ $data->nik }}</td>
                         <td>{{ $data->no_hp }}</td>
                         <td>{{ $data->email }}</td>
-                        <td>{{ $data->tgl_pengajuan }}</td>
-                        <td><a href="/edit-p_hilang/{{ $data->id_pengajuan }}" class="btn btn-success">Edit</a> <a href="hapus-p_hilang/{{ $data->id_pengajuan }}" class="btn btn-danger">Delete</a></td>
+                        <td>
+                            <?php
+                            $date = new DateTime($data->tgl_pengajuan);
+                            echo $date->format("d-m-Y");
+                            ?>
+                        </td>
+                        @if($data->tipe =='PHilang')                  
+                            <td>Pengajuan Kehilangan</td>
+                        @else
+                            <td>Pengajuan Rusak</td>
+                        @endif
+                        <td><a href="pengajuan-passport-hilang/edit-passport-hilang/{{ $data->id_pengajuan }}" class="btn btn-success">Edit</a> <a href="pengajuan-passport-hilang/hapus-passport-hilang/{{ $data->id_pengajuan }}" class="btn btn-danger">Delete</a></td>
                     </tr>
                     <?php $no++ ;?>
                     @endforeach
