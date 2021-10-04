@@ -5,7 +5,7 @@
     <span class="fa fa-passport sticky"></span>
     <label>Selamat datang di Aplikasi PAPALASAK</label>
     <br>
-    <label class="font-weight-normal">{{date('d M Y, H:m')}}</label>
+    <label class="font-weight-normal">{{date('d M Y')}}</label>
 </div>
 <div class="row">
     <div class="col-md-4 mb-4">

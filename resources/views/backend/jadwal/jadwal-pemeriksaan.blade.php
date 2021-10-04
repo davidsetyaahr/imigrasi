@@ -2,6 +2,22 @@
 
 @section('container')
 <div class="row">
+    @if (session('status'))
+    <div class="col alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if (count($jadwalTgl)==0)
+    <div class="col alert alert-info alert-dismissible fade show" role="alert">
+        Tidak Ada Jadwal Pemeriksaan.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     <div class="col-md-12 mb-4" id="accordion">
         @foreach ($jadwalTgl as $tgl)
         <div class="card mb-3 card-jadwal">

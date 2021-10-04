@@ -98,7 +98,7 @@
             </div>
           </li>
           <li class="nav-item {{Request::segment(1) == 'rekap' ? 'active' : ''}}">
-            <a class="nav-link" href="{{url('home')}}">
+            <a class="nav-link" href="{{url('rekap')}}">
               <i class="fas fa-fw fa-book-reader"></i>
               <span>Rekap</span></a
             >
