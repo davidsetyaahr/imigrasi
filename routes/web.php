@@ -19,7 +19,7 @@ use App\Http\Controllers\RekapController;
 */
 
 Route::get('/',[PengajuanController::class,'index']);
-Route::resource('pengajuan', PengajuanController::class);
+Route::post('pengajuan/store',[PengajuanController::class,'store']);
 
 Auth::routes();
 Auth::routes(['register' => false]);

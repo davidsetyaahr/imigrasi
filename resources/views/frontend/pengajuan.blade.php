@@ -6,11 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <link href="{{asset('backend/vendor/sweetalert-master/dist/sweetalert.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <title>Pengajuan</title>
 </head>
 <body>
-    <form action="">
+    <div class="loading">
+        <div class="info">
+          <img src="{{asset('backend/img/loading.gif')}}" alt="">
+          <p>Loading...</p>
+        </div>
+      </div>
+      <?php 
+        $classPHilang = '';
+        $classPRusak = '';
+        $displayPertanyaanPRusak = 'none';
+        $displayPertanyaanPHilang = 'none';
+        $stylePHilang = "style='display:none'";
+        $stylePRusak = "style='display:none'";
+        $displayDataDiri = 'none';
+        $displayBtnDataDiri = 'none';
+        $displayBtnBack = 'none';
+        $displayPick = 'block';
+        if(count($errors->all())>0){
+            $displayPick = 'none';
+            $displayBtnBack = 'block';
+            $displayDataDiri = 'block';
+            $displayBtnDataDiri = 'initial';
+            if(old('tipe')=='PHilang'){
+                $displayPertanyaanPHilang = 'block';
+                $stylePHilang = '';
+                $classPHilang = 'active';
+            }
+            else{
+                $displayPertanyaanPRusak = 'block';
+                $stylePRusak = '';
+                $classPRusak = 'active';
+            }
+        }
+      ?>
+  
         <div class="d-flex align-items-center mt-5" id="home">
             <div class="container">
                 <div class="row">
@@ -19,19 +54,19 @@
                         <h4 class="mt-3 color-blue font-weight-bold">Selamat Datang Di <br> Aplikasi PAPALASAK <br> (Penggantian Paspor Hilang dan Rusak) </h4>
                     </div>
                 </div>
-                <div id="pick">
+                <div id="pick" style="display:{{$displayPick}}">
                     <br>
                     <h5 class="text-center mb-3">Pilih Disini:</h5>
                     <div class="row mt-2 justify-content-center">
                         <div class="col-md-3 col-6">
-                            <div data-tipe="PHilang" class="card p-3 text-center">
+                            <div data-tipe="PHilang" class="card p-3 text-center {{$classPHilang}}">
                                 <img src="{{asset('frontend/img/passport1.png')}}" alt="">
                                 <br>
                                 <h6 class="mb-0">Paspor Hilang</h6>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
-                            <div data-tipe="PRusak" class="card p-3 text-center">
+                            <div data-tipe="PRusak" class="card p-3 text-center {{$classPRusak}}">
                                 <img src="{{asset('frontend/img/passport2.png')}}" alt="">
                                 <br>
                                 <h6 class="mb-0">Paspor Rusak</h6>
@@ -40,14 +75,16 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col text-center">
-                            <button id="btn-datadiri" class="d-none btn btn-yellow py-2 px-4">Lanjut Isi Data Diri <span class="fa fa-long-arrow-alt-right"></span></button>
+                            <button id="btn-datadiri" class="btn btn-yellow py-2 px-4" style="display:{{$displayBtnDataDiri}}">Lanjut Isi Data Diri <span class="fa fa-long-arrow-alt-right"></span></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <input type="hidden" value="" name="tipe" id="tipe">
-        <div id="datadiri" class="d-none container mt-5">
+        <form action="{{url('pengajuan/store')}}" id="submitConfirm" data-info="Apakah data yang anda isi sudah benar? Tekan submit untuk mengirim pengajuan." method="post">
+            @csrf
+        <input type="hidden" value="{{ old('tipe') }}" name="tipe" id="tipe">
+        <div id="datadiri" class="container mt-5" style="display:{{$displayDataDiri}}">
             <div class="row">
                 <div class="col">
                     <div class="nav nav-tabs custom-nav-tabs" id="nav-tab" role="tablist">
@@ -59,52 +96,94 @@
             <div class="tab-content custom-tab-content" id="nav-tabContent">
                 <div class="tab-pane  px-4 py-4 fade show active" id="nav-datadiri" role="tabpanel" aria-labelledby="nav-datadiri-tab">
                     <label for="">Nama Lengkap (Sesuai Paspor)</label>
-                    <input type="text" name="nama" class="form-control">
+                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror">
+                    @error('nama')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <br>
                     <label for="">NIK</label>
-                    <input type="text" name="nik" class="form-control">
+                    <input type="text" name="nik" class="form-control  @error('nik') is-invalid @enderror">
+                    @error('nik')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <br>
                     <label for="">Email</label>
-                    <input type="email" name="email" class="form-control">
+                    <input type="email" name="email" class="form-control  @error('email') is-invalid @enderror">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <br>
                     <label for="">No Hp</label>
-                    <input type="text" name="no_hp" class="form-control">
+                    <input type="text" name="no_hp" class="form-control  @error('no_hp') is-invalid @enderror">
+                    @error('no_hp')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <br>
                     <label for="">Alamat</label>
-                    <textarea name="alamat" class="form-control" rows="5"></textarea>
+                    <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" rows="5"></textarea>
+                    @error('alamat')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <br>
                     <label for="">Jenis Kelamin</label>
                     <br>
                     <input type="radio" name="jenis_kelamin" id="lk" value="laki-laki"> <label for="lk"> Laki Laki</label> &nbsp;
                     <input type="radio" name="jenis_kelamin" id="pr" value="perempuan"> <label for="pr"> Perempuan</label>
+                    @error('jenis_kelamin')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <br>
                 </div>
                 <div class="tab-pane  px-4 py-4 fade" id="nav-pertanyaan" role="tabpanel" aria-labelledby="nav-pertanyaan-tab">
-                    <div id="pRusak" style="display: none">
+                    <div id="pRusak" style="display: {{$displayPertanyaanPRusak}}">
                         @foreach ($pRusak as $data)
                             <label for="">{{$data->pertanyaan}}</label>
-                            <input type="text" class="form-control">
+                            <input type="text" name="soal_rusak{{$data->id_pertanyaan}}" class="form-control @error('soal_rusak'.$data->id_pertanyaan) is-invalid @enderror">
+                            @error('soal_rusak'.$data->id_pertanyaan)
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             <br>
                         @endforeach
                     </div>
-                    <div id="pHilang" style="display: none">
+                    <div id="pHilang" style="display: {{$displayPertanyaanPHilang}}">
                         @foreach ($pHilang as $data)
                             <label for="">{{$data->pertanyaan}}</label>
-                            <input type="text" class="form-control">
+                            <input type="text" name="soal_hilang{{$data->id_pertanyaan}}" class="form-control @error('soal_hilang'.$data->id_pertanyaan) is-invalid @enderror">
+                            @error('soal_hilang'.$data->id_pertanyaan)
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             <br>
                         @endforeach
                     </div>
                     <button type="submit" class="btn btn-blue px-3 py-2"><span class="fa fa-save"></span> Kirim</button>
-                    <button type="submit" class="btn btn-default px-3 py-2"><span class="fa fa-times"></span> Reset</button>
+                    <button type="reset" class="btn btn-default px-3 py-2"><span class="fa fa-times"></span> Reset</button>
                 </div>
             </div>
-            <center>
-                <a href="#" id="back" class="my-5 d-block color-yellow"><span class="fa fa-long-arrow-alt-left"></span> Kembali</a>
-            </center>
         </div>
     </form>    
+    <center>
+        <a href="#" id="back" style="display: {{$displayBtnBack}}" class="my-5 color-yellow"><span class="fa fa-long-arrow-alt-left"></span> Kembali</a>
+    </center>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="{{asset('backend/vendor/sweetalert-master/dist/sweetalert-dev.js')}}"></script>
+
     <script>
         $(document).ready(function(){
             $(".card").click(function(){
@@ -112,8 +191,7 @@
                 var tipe = $(this).data('tipe')
                 $(this).addClass("active")
                 $("#tipe").val(tipe)
-                $("#btn-datadiri").removeClass('d-none')
-
+                $("#btn-datadiri").fadeIn()
                 if(tipe=='PRusak'){
                     $("#pHilang").fadeOut()
                     $("#pRusak").fadeIn()
@@ -125,9 +203,10 @@
             })
             $("#btn-datadiri").click(function(e){
                 e.preventDefault();
+                $('#back').css({'display':'block'})
+
                 $("#home").removeClass('home-step1')
                 $("#pick").hide()
-                $("#datadiri").removeClass('d-none')
                 $("#datadiri").fadeIn()
             })
             $("#back").click(function(e){
@@ -135,7 +214,32 @@
                 $("#home").addClass('home-step1')
                 $("#datadiri").hide()
                 $("#pick").fadeIn()
+                $(this).hide()
             })
+            $("#submitConfirm").submit(function(e) {
+                e.preventDefault();
+                var id = $(this).attr("id");
+                $(".loading").removeClass("show");
+                var info = $(this).data('info')
+                swal(
+                    {
+                        title: "Apakah Anda Yakin?",
+                        text: info,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3c4099",
+                        confirmButtonText: "Submit",
+                        closeOnConfirm: false
+                    },
+                    function() {
+                        $("#"+id).unbind("submit").submit();
+                        $(".loading").addClass("show");
+                    }
+                );
+            });
+
+
+
         })
     </script>
 </body>

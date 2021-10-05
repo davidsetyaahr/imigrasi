@@ -37,7 +37,7 @@
         <img src="{{asset('backend/img/loading.gif')}}" alt="">
         <p>Loading...</p>
       </div>
-  </div>
+    </div>
 
     <!-- Page Wrapper -->
     <div id="wrapper">

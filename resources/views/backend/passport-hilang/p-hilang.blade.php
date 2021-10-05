@@ -24,7 +24,6 @@
                         <th>No. Telp</th>
                         <th>Email</th>
                         <th>Tanggal Pengajuan</th>
-                        <th>Tipe</th>
                         <th width="15%">Aksi</th>
                     </tr>
                 </thead>
@@ -50,11 +49,6 @@
                             echo $date->format("d-m-Y");
                             ?>
                         </td>
-                        @if($data->tipe =='PHilang')                  
-                            <td>Pengajuan Kehilangan</td>
-                        @else
-                            <td>Pengajuan Rusak</td>
-                        @endif
                         <td><a href="pengajuan-passport-hilang/edit-passport-hilang/{{ $data->id_pengajuan }}" class="btn btn-success">Edit</a> <a href="pengajuan-passport-hilang/hapus-passport-hilang/{{ $data->id_pengajuan }}" class="btn btn-danger">Delete</a></td>
                     </tr>
                     <?php $no++ ;?>
