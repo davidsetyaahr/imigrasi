@@ -50,6 +50,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col text-center">
+                        @if (session('status'))
+                        <div class="col alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('status') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
                         <img src="{{asset('frontend/img/logo-imigrasi.png')}}" width="80px" alt="" srcset="">
                         <h4 class="mt-3 color-blue font-weight-bold">Selamat Datang Di <br> Aplikasi PAPALASAK <br> (Penggantian Paspor Hilang dan Rusak) </h4>
                     </div>

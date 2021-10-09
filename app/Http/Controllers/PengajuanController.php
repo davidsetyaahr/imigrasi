@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\PertanyaanModel;
+use App\Models\PengajuanModel;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -36,7 +37,7 @@ class PengajuanController extends Controller
             $field = 'soal_rusak';
         }
         $pertanyaan = $getPertanyaan->get();
-
+        
         foreach ($pertanyaan as $key => $value) {
             $rules[$field.$value->id_pertanyaan] = 'required'; 
         }
@@ -44,23 +45,33 @@ class PengajuanController extends Controller
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {
             return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
+            ->withErrors($validator)
+            ->withInput();
         }   
+        $pengajuan = new PengajuanModel;
+        $pengajuan->tipe = $request->input('tipe');
+        $pengajuan->nama = $request->input('nama');
+        $pengajuan->email = $request->input('email');
+        $pengajuan->no_hp = $request->input('no_hp');
+        $pengajuan->alamat = $request->input('alamat');
+        $pengajuan->nik = $request->input('nik');
+        $pengajuan->jenis_kelamin = $request->input('jenis_kelamin');
+        $pengajuan->tgl_pengajuan = date('Y-m-d');
+        $pengajuan->no_pemeriksaan = 0;
+        $pengajuan->status = '0';
+        $pengajuan->save();
 
-        $pengajuan = array(
-            'tipe' => $request->input('tipe'),
-            'nama' => $request->input('nama'),
-            'email' => $request->input('email'),
-            'no_hp' => $request->input('no_hp'),
-            'alamat' => $request->input('alamat'),
-            'nik' => $request->input('nik'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-            'tanggal_pengajuan' => date('Y-m-d'),
-            'status' => '0'
-        );
+        foreach ($pertanyaan as $key => $value) {
+            $jawabPertanyaan = array(
+                'id_pengajuan' => $pengajuan->id,
+                'id_pertanyaan' => $value->id_pertanyaan,
+                'jawaban' => $request->input($field.$value->id_pertanyaan)
+            );
+            \DB::table('jawab_pertanyaan')->insert($jawabPertanyaan);
+        }
 
-    
+        return redirect()->back()->with('status', '<b>Data Berhasil Dikirim.</b> <br> Data anda akan kami proses, kami akan memberikan informasi selanjutnya via email terkait jadwal pemeriksaan');
+
     }
 
 }

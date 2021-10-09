@@ -15,7 +15,7 @@
                                     <span class="fa fa-calendar"></span>
                                     </span>
                                 </div>
-                                <input type="text" name="dari" class="datepicker form-control" id="">
+                                <input type="text" name="dari" class="datepicker form-control" id="" autocomplete="off">
                             </div>                        
                         </div>
                         <div class="col-md-4">
@@ -26,15 +26,15 @@
                                         <span class="fa fa-calendar"></span>
                                     </span>
                                 </div>
-                                <input type="text" name="sampai" class="datepicker form-control" id="">
+                                <input type="text" name="sampai" class="datepicker form-control" id="" autocomplete="off">
                             </div>                        
                         </div>
                         <div class="col-md-4">
                             <label for="">Tipe Pengajuan</label>
                             <select name="tipe" id="" class="form-control">
-                                <option value="all">Tipe Pengajuan</option>
-                                <option value="pHilang">Paspor Hilang</option>
-                                <option value="pHilang">Paspor Rusak</option>
+                                <option value="all">Semua Tipe Pengajuan</option>
+                                <option value="PHilang">Paspor Hilang</option>
+                                <option value="PHilang">Paspor Rusak</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -67,7 +67,7 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->nama}}</td>
-                            <td>{{$item->nik}}</td>
+                            <td>{{$item->NIK}}</td>
                             <td>{{$item->no_pemeriksaan}}</td>
                             <td>{{date('d M Y', strtotime($item->tgl_pengajuan))}}</td>
                             <td>{{date('d M Y', strtotime($item->tgl_pemeriksaan))}}</td>

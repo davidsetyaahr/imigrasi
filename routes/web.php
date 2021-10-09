@@ -7,6 +7,7 @@ use App\Http\Controllers\PassporthilangController;
 use App\Http\Controllers\PassportrusakController;
 use App\Http\Controllers\ArsippemeriksaanController;
 use App\Http\Controllers\RekapController;
+use App\Http\Controllers\PemeriksaanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,9 @@ Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('rekap', [RekapController::class,'index']);
+    Route::get('pemeriksaan/{id_jadwal}', [PemeriksaanController::class,'pemeriksaan']);
+    Route::post('pemeriksaan/diperiksa', [PemeriksaanController::class,'diperiksa']);
+    Route::get('pemeriksaan/berkas/{id_pengajuan}', [PemeriksaanController::class,'berkas']);
     Route::group(['prefix' => 'jadwal'], function () {
         Route::get('/', [PenjadwalanController::class,'index']);
         Route::get('detail', [PenjadwalanController::class,'detail']);

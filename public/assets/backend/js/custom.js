@@ -40,7 +40,7 @@ $(document).ready(function() {
                     res = JSON.parse(res)
                     $.each(res, function(key,data){
                         var i = key+1
-                        var btn = todayYmd()>=tgl ? '<a class="dropdown-item" href="#">Lakukan Pemeriksaan</a>' : '<a class="dropdown-item" href="#">Edit</a>'
+                        var btn = todayYmd()>=tgl ? '<a class="dropdown-item" href="pemeriksaan/'+data.id_jadwal+'">Lakukan Pemeriksaan</a>' : '<a class="dropdown-item" href="#">Edit</a>'
                         $(table+" tbody").append(`
                             <tr>
                                 <td>${i}</td>
