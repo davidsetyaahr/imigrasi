@@ -26,16 +26,17 @@ class PemeriksaanController extends Controller
         ->where('id_pengajuan',$id_pengajuan)
         ->delete();
 
-        return redirect('pemeriksaan/berkas/'.$id_pengajuan);
+        return redirect(url('jadwal'))->with('status', 'Pemeriksaan Berhasil')->with('id_pengajuan',$id_pengajuan);
     }
-    public function berkas($id_pengajuan)
+    public function berkas($id_pengajuan,$redirect="")
     {
         $data['detail'] = \DB::table('pengajuan')->where('id_pengajuan',$id_pengajuan)->first();
-        $data['pertanyaan'] = \DB::table('jawab_pertanyaan as jp')->select('p.pertanyaan','jp.jawaban')->join('pertanyaan as p','jp.id_pertanyaan','p.id_pertanyaan')->where('id_pengajuan',$data['detail']->id_pengajuan)->get();
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=Berkas-pemeriksaan-".$data['detail']->no_pemeriksaan.".docx");
-        $data['url'] = url('jadwal');
-    
+        $data['pertanyaan'] = \DB::table('jawab_pertanyaan as jp')->select('p.pertanyaan','jp.jawaban')->join('pertanyaan as p','jp.id_pertanyaan','p.id_pertanyaan')->where('id_pengajuan',$id_pengajuan)->get();
+        $data['url'] = $redirect;
+        header('Content-Type: application/vnd.msword');
+        header('Content-Disposition: attachment; filename="BAP-'.$data['detail']->no_pemeriksaan.'.doc"');
+        header('Cache-Control: private, max-age=0, must-revalidate');
+        
         return view('backend/jadwal/berkas-pemeriksaan',$data);
     }
 }

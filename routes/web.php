@@ -52,5 +52,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     });
     Route::group(['prefix' => 'arsip-pemeriksaan'], function () {
         Route::get('/', [ArsippemeriksaanController::class,'index']);
+        Route::post('delete', [ArsippemeriksaanController::class,'delete']);
     });
 });

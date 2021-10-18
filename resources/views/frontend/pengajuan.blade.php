@@ -52,7 +52,7 @@
                     <div class="col text-center">
                         @if (session('status'))
                         <div class="col alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('status') }}
+                            <?= session('status') ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -114,6 +114,59 @@
                     <label for="">NIK</label>
                     <input type="text" name="nik" class="form-control  @error('nik') is-invalid @enderror">
                     @error('nik')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <br>
+                    <label for="">Tempat Lahir</label>
+                    <input type="text" name="tempat_lahir" class="form-control @error('tempat_lahir') is-invalid @enderror">
+                    @error('tempat_lahir')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <br>
+                    <label for="">Tanggal Lahir</label>
+                    <input type="date" name="tgl_lahir" class="form-control @error('tgl_lahir') is-invalid @enderror">
+                    @error('tgl_lahir')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <br>
+                    <label for="">Agama</label>
+                    <select name="agama" id="" class="form-control @error('agama') is-invalid @enderror">
+                        <option>Islam</option>
+                        <option>Kristen</option>
+                        <option>Katolik</option>
+                        <option>Hindu</option>
+                        <option>Budha</option>
+                        <option>Kong Hu Chu</option>
+                    </select>
+                    @error('agama')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <br>
+                    <label for="">Status Perkawinan</label>
+                    <select name="status_pernikahan" id="" class="form-control @error('status_pernikahan') is-invalid @enderror">
+                        <option>Belum Kawin</option>
+                        <option>Sudah Kawin</option>
+                        <option>Duda</option>
+                        <option>Janda</option>
+                        <option>Cerai Mati</option>
+                    </select>
+                    @error('status_pernikahan')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <br>
+                    <label for="">Pekerjaan</label>
+                    <input type="text" name="pekerjaan" class="form-control  @error('pekerjaan') is-invalid @enderror">
+                    @error('pekerjaan')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

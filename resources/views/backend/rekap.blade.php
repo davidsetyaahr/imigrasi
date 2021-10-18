@@ -60,6 +60,7 @@
                             <th>Tanggal Pengajuan</th>
                             <th>Tanggal Pemeriksaan</th>
                             <th>Tipe Pengajuan</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,6 +73,7 @@
                             <td>{{date('d M Y', strtotime($item->tgl_pengajuan))}}</td>
                             <td>{{date('d M Y', strtotime($item->tgl_pemeriksaan))}}</td>
                             <td>{{$item->tipe=='Philang' ? 'Paspor Hilang' : 'Paspor Rusak'}}</td>
+                            <td><a href="{{url('pemeriksaan/berkas/'.$item->id_pengajuan)}}" class="btn btn-default"><span class="fa fa-download"></span> Download Berkas</a></td>
                         </tr>
                         @endforeach
                     </tbody>

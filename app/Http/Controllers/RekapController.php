@@ -11,7 +11,7 @@ class RekapController extends Controller
     {
         $data['pageInfo'] = 'Rekap Pemeriksaan Pengajuan Paspor';
         if(isset($_GET['dari'])){
-            $rekap = PengajuanModel::where('tgl_pemeriksaan','>=',$_GET['dari'])->where('tgl_pemeriksaan','<=',$_GET['sampai'])->where('status','1');
+            $rekap = PengajuanModel::where('tgl_pemeriksaan','>=',$_GET['dari'])->where('tgl_pemeriksaan','<=',$_GET['sampai'])->where('tgl_pemeriksaan','!=',NULL);
             if($_GET['tipe']!='all'){
                 $data['rekap'] = $rekap->where('tipe',$_GET['tipe'])->orderBy('tgl_pemeriksaan','asc')->get();
             }
