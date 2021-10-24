@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2021 at 03:10 AM
+-- Generation Time: Oct 24, 2021 at 05:47 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -91,7 +91,31 @@ INSERT INTO `jawab_pertanyaan` (`id_jawab`, `id_pengajuan`, `id_pertanyaan`, `ja
 (50, 9, 10, 'Hilang'),
 (51, 9, 11, '123'),
 (52, 9, 12, 'Karena'),
-(53, 9, 13, 'Ya');
+(53, 9, 13, 'Ya'),
+(54, 10, 1, 'Ya'),
+(55, 10, 2, 'Ya'),
+(56, 10, 3, 'Ya'),
+(57, 10, 4, 'Ya'),
+(58, 10, 5, 'Riwayat hidup'),
+(59, 10, 6, 'Ya'),
+(60, 10, 7, 'Jember'),
+(61, 10, 8, '20 Desember 2021'),
+(62, 10, 10, 'Hilang'),
+(63, 10, 11, 'Ya'),
+(64, 10, 12, 'Untuk keluar negeri'),
+(65, 10, 13, 'Ya'),
+(66, 11, 1, 'Ya'),
+(67, 11, 2, 'Ya'),
+(68, 11, 3, 'Ya'),
+(69, 11, 4, 'Ya'),
+(70, 11, 5, 'Riwayat hidup'),
+(71, 11, 6, 'Ya'),
+(72, 11, 7, 'Jember'),
+(73, 11, 8, '20 Desember 2021'),
+(74, 11, 10, 'Hilang'),
+(75, 11, 11, '123'),
+(76, 11, 12, 'Karena'),
+(77, 11, 13, 'Ya');
 
 -- --------------------------------------------------------
 
@@ -135,6 +159,7 @@ CREATE TABLE `pengajuan` (
   `no_pemeriksaan` varchar(100) NOT NULL,
   `tgl_pengajuan` datetime NOT NULL,
   `tgl_pemeriksaan` datetime DEFAULT NULL,
+  `id_petugas` int(3) NOT NULL,
   `status` enum('0','1') NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
@@ -144,12 +169,13 @@ CREATE TABLE `pengajuan` (
 -- Dumping data for table `pengajuan`
 --
 
-INSERT INTO `pengajuan` (`id_pengajuan`, `tipe`, `nama`, `email`, `no_hp`, `alamat`, `NIK`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `agama`, `status_pernikahan`, `pekerjaan`, `no_pemeriksaan`, `tgl_pengajuan`, `tgl_pemeriksaan`, `status`, `created_at`, `updated_at`) VALUES
-(5, 'PHilang', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '3511131701990001', 'laki-laki', 'Banyuwangi', '2021-10-14', 'Islam', 'Kawin', 'Pengusaha', '876', '2021-10-09 00:00:00', '2021-10-09 00:00:00', '1', '2021-10-09 07:58:02', '2021-10-09 07:58:02'),
-(6, 'PHilang', 'David Setya A', 'davidsetya24@gmail.com', '082189721', 'Bondowoso', '212331', 'laki-laki', '', '2021-10-14', '', '', '', '624', '2021-10-14 00:00:00', '2021-10-14 00:00:00', '1', '2021-10-14 05:28:31', '2021-10-14 05:28:31'),
-(7, 'PRusak', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '12', 'laki-laki', '', '2021-10-14', '', '', '', '213', '2021-10-14 00:00:00', '2021-10-14 00:00:00', '1', '2021-10-14 05:41:18', '2021-10-14 05:41:18'),
-(8, 'PHilang', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '3511131701990001', 'laki-laki', 'bondowoso', '2021-10-15', 'Islam', 'Belum Kawin', 'programmer', '546', '2021-10-15 00:00:00', '2021-10-15 00:00:00', '1', '2021-10-15 21:18:28', '2021-10-15 21:18:28'),
-(9, 'PHilang', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '1234', 'laki-laki', 'bondowoso', '2021-10-16', 'Islam', 'Belum Kawin', 'SWASTA', '123', '2021-10-16 00:00:00', '2021-10-16 00:00:00', '1', '2021-10-16 09:25:43', '2021-10-16 09:25:43');
+INSERT INTO `pengajuan` (`id_pengajuan`, `tipe`, `nama`, `email`, `no_hp`, `alamat`, `NIK`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `agama`, `status_pernikahan`, `pekerjaan`, `no_pemeriksaan`, `tgl_pengajuan`, `tgl_pemeriksaan`, `id_petugas`, `status`, `created_at`, `updated_at`) VALUES
+(5, 'PHilang', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '3511131701990001', 'laki-laki', 'Banyuwangi', '2021-10-14', 'Islam', 'Kawin', 'Pengusaha', '876', '2021-10-09 00:00:00', '2021-10-09 00:00:00', 3, '1', '2021-10-09 07:58:02', '2021-10-09 07:58:02'),
+(6, 'PHilang', 'David Setya A', 'davidsetya24@gmail.com', '082189721', 'Bondowoso', '212331', 'laki-laki', '', '2021-10-14', '', '', '', '624', '2021-10-14 00:00:00', '2021-10-14 00:00:00', 3, '1', '2021-10-14 05:28:31', '2021-10-14 05:28:31'),
+(7, 'PRusak', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '12', 'laki-laki', '', '2021-10-14', '', '', '', '213', '2021-10-14 00:00:00', '2021-10-14 00:00:00', 3, '1', '2021-10-14 05:41:18', '2021-10-14 05:41:18'),
+(8, 'PHilang', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '3511131701990001', 'laki-laki', 'bondowoso', '2021-10-15', 'Islam', 'Belum Kawin', 'programmer', '546', '2021-10-15 00:00:00', '2021-10-15 00:00:00', 3, '1', '2021-10-15 21:18:28', '2021-10-15 21:18:28'),
+(9, 'PHilang', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '1234', 'laki-laki', 'bondowoso', '2021-10-16', 'Islam', 'Belum Kawin', 'SWASTA', '123', '2021-10-16 00:00:00', '2021-10-16 00:00:00', 3, '1', '2021-10-16 09:25:43', '2021-10-16 09:25:43'),
+(11, 'PHilang', 'David Setya', 'davidsetya24@gmail.com', '081216111136', 'Bondowoso\r\nBondowoso', '3511131701990001', 'laki-laki', 'bondowoso', '2021-10-21', 'Islam', 'Belum Kawin', 'programmer', '435', '2021-10-21 00:00:00', '2021-10-21 00:00:00', 3, '1', '2021-10-21 21:58:24', '2021-10-21 21:58:24');
 
 -- --------------------------------------------------------
 
@@ -199,14 +225,39 @@ INSERT INTO `pertanyaan` (`id_pertanyaan`, `pertanyaan`, `is_p_rusak`, `is_p_hil
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `petugas`
+--
+
+CREATE TABLE `petugas` (
+  `id_petugas` int(3) NOT NULL,
+  `nama` varchar(150) NOT NULL,
+  `nip` varchar(20) NOT NULL,
+  `pangkat` varchar(255) NOT NULL,
+  `jabatan` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `petugas`
+--
+
+INSERT INTO `petugas` (`id_petugas`, `nama`, `nip`, `pangkat`, `jabatan`, `updated_at`, `created_at`) VALUES
+(3, 'RIZKI NUR ADIYAT', '1978122420006041001', 'Penata Muda Tingkat I (III/b)', 'Kepala Subseksi Penindakan Keimigrasian', '2021-10-21 21:06:54', '2021-10-21 20:30:40'),
+(9, 'Super Admin', '123', 'Super Admin', 'Super Admin', '2021-10-24 10:47:49', '2021-10-24 10:47:49');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` tinyint(3) UNSIGNED NOT NULL,
-  `nama` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_petugas` int(3) NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `level` enum('1','2') COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '1 = Super Admin, 2 = Petugas',
   `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -217,9 +268,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `nama`, `email`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'administrator@mail.com', '$2y$10$Waq71S2gE1dY1uTptzhIueezsXeOR5v6rLf5xQ92Gd7Lph3zWkStq', NULL, NULL, '2021-06-29 07:32:14', '2021-06-29 07:32:14'),
-(5, 'Administrator', 'davidsetya24@gmail.com', '$2y$10$Waq71S2gE1dY1uTptzhIueezsXeOR5v6rLf5xQ92Gd7Lph3zWkStq', NULL, NULL, '2021-06-29 07:32:14', '2021-06-29 07:32:14');
+INSERT INTO `users` (`id`, `id_petugas`, `email`, `password`, `level`, `two_factor_secret`, `two_factor_recovery_codes`, `created_at`, `updated_at`) VALUES
+(7, 3, 'rizki@gmail.com', '$2y$10$XWp8d36DsyKbQjDmDyPUE.Xxmzg4Vwt47Fe63FZT8/NMUUVQ7.XvC', '2', NULL, NULL, '2021-10-21 13:30:40', '2021-10-21 14:07:01'),
+(10, 9, 'super.admin@gmail.com', '$2y$10$spqXQDpU.EMjbG.UdiIdGuSwkq8sizgmaKjsk41Ew5Aa.hM5oBjrm', '1', NULL, NULL, '2021-10-24 03:47:49', '2021-10-24 03:47:49');
 
 --
 -- Indexes for dumped tables
@@ -256,6 +307,12 @@ ALTER TABLE `pertanyaan`
   ADD PRIMARY KEY (`id_pertanyaan`);
 
 --
+-- Indexes for table `petugas`
+--
+ALTER TABLE `petugas`
+  ADD PRIMARY KEY (`id_petugas`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -270,19 +327,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `jawab_pertanyaan`
 --
 ALTER TABLE `jawab_pertanyaan`
-  MODIFY `id_jawab` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_jawab` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `pengajuan`
 --
 ALTER TABLE `pengajuan`
-  MODIFY `id_pengajuan` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pengajuan` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `penjadwalan`
 --
 ALTER TABLE `penjadwalan`
-  MODIFY `id_jadwal` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_jadwal` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`
@@ -291,10 +348,16 @@ ALTER TABLE `pertanyaan`
   MODIFY `id_pertanyaan` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `petugas`
+--
+ALTER TABLE `petugas`
+  MODIFY `id_petugas` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

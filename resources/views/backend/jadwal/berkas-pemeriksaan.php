@@ -66,21 +66,21 @@
                 <h4 style="margin-top:0px;font-weight:normal">NOMOR W15.IMI.IMI.4-GR.03.01-2.<?= $detail->no_pemeriksaan ?></h4>
             </center>
             <br>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pada hari ini, Senin tanggal Enam bulan Juli tahun Dua Ribu Dua Puluh Pukul 08:35 WIB, saya:</p>
+            <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pada hari ini, <?= $hari ?> tanggal <?= $tgl ?> bulan <?= $bulan ?> tahun <?= $thn ?> Pukul <?= $jam ?>, saya:</p>
             <p>
                 <center>
-                    <b>RIZKY NUR ADIYAT</b>
+                    <b><?= strtoupper($detail->nama_petugas) ?></b>
                 </center>
             </p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pangkat Penata Muda Tingkat I (III/b), NIP.1978122420006041001, Kepala Subseksi Penindakan Keimigrasian pada Kantor Imigrasi Kelas II TPI Jember, melakukan pemeriksaan terhadap seorang <?= ucwords($detail->jenis_kelamin) ?> berkebangsaan Indonesia yang belum saya kenal sebelumnya, bernama dan memeiliki identitas jati diri sebagai berikut:</p>
+            <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= ucwords($detail->pangkat) ?>, NIP.<?= ucwords($detail->nip) ?>, <?= ucwords($detail->jabatan) ?> pada Kantor Imigrasi Kelas II TPI Jember, melakukan pemeriksaan terhadap seorang <?= ucwords($detail->jenis_kelamin) ?> berkebangsaan Indonesia yang belum saya kenal sebelumnya, bernama dan memeiliki identitas jati diri sebagai berikut:</p>
             <p>
                 <center>
                     <b><?= $detail->nama ?></b>
                 </center>
             </p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lahir di <?= $detail->tempat_lahir ?>, tanggal <?= date('d F Y', strtotime($detail->tgl_lahir)) ?>, agama <?= $detail->agama ?>, status <?= $detail->status_pernikahan ?>, pekerjaan <?= $detail->pekerjaan ?>, alamat <?= $detail->alamat ?>. Pemegang Dokumen Perjalanan Republik Indonesia (DPRI) Nomor <?= $pertanyaan[5]->jawaban ?> atas nama <b> <?= $detail->nama ?></b> yang diterbitkan <?= $pertanyaan[6]->jawaban ?> berlaku s/d <?= $pertanyaan[7]->jawaban ?>. </p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yang bersangkutan diperiksa dan didengar keterangannya sesuai Pasal 40 ayat (2) dan ayat (3) Peraturan Mentri Hukum dan Hak Asasi Manusia Nomor 8 Tahun 2014 tentang Paspor Biasa dan Surar Perjalanan Laksana Paspor.</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Atas pemeriksaan dan pertanyaan pemeriksa yang diperiksa menjawab dan memberikan keterangan sebagai berikut:</p>
+            <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lahir di <?= $detail->tempat_lahir ?>, tanggal <?= date('d F Y', strtotime($detail->tgl_lahir)) ?>, agama <?= $detail->agama ?>, status <?= $detail->status_pernikahan ?>, pekerjaan <?= $detail->pekerjaan ?>, alamat <?= $detail->alamat ?>. Pemegang Dokumen Perjalanan Republik Indonesia (DPRI) Nomor <?= $pertanyaan[5]->jawaban ?> atas nama <b> <?= $detail->nama ?></b> yang diterbitkan <?= $pertanyaan[6]->jawaban ?> berlaku s/d <?= $pertanyaan[7]->jawaban ?>. </p>
+            <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yang bersangkutan diperiksa dan didengar keterangannya sesuai Pasal 40 ayat (2) dan ayat (3) Peraturan Mentri Hukum dan Hak Asasi Manusia Nomor 8 Tahun 2014 tentang Paspor Biasa dan Surar Perjalanan Laksana Paspor.</p>
+            <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Atas pemeriksaan dan pertanyaan pemeriksa yang diperiksa menjawab dan memberikan keterangan sebagai berikut:</p>
             <br>
             <table width="100%">
                 <tr>
@@ -106,7 +106,7 @@
                 }
             ?>
             <br>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Setelah Berita Acara Pemeriksaan ini selesai dibuat kemudian dibacakan kembali kepada yang diperiksa dengan bahsa yang mudah dimengerti, yang diperiksa menyatakan setuju dan membenarkan semua keterangan yang diberikan tersebut diatas, untuk menguatkannya dibutuhkan tanda tangan dibawah ini. </p>
+            <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Setelah Berita Acara Pemeriksaan ini selesai dibuat kemudian dibacakan kembali kepada yang diperiksa dengan bahsa yang mudah dimengerti, yang diperiksa menyatakan setuju dan membenarkan semua keterangan yang diberikan tersebut diatas, untuk menguatkannya dibutuhkan tanda tangan dibawah ini. </p>
             <br>
             <table width="100%">
                 <tr>
@@ -118,12 +118,12 @@
                         <br>
                         <br>
                         <br>
-                        Khusnul Khotimah
+                        <?= $detail->nama ?>
                     </td>
                 </tr>
             </table>
             <br>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian Berita Acara Pemeriksaan ini dibuat dnegan sebenarnya atas kekuatan sumpah jabatan, kemudian ditutup dan ditandatangani di Jember pada hari ini, tanggal, bulan dan tahun tersebut diatas</p>
+            <p align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian Berita Acara Pemeriksaan ini dibuat dnegan sebenarnya atas kekuatan sumpah jabatan, kemudian ditutup dan ditandatangani di Jember pada hari ini, tanggal, bulan dan tahun tersebut diatas</p>
             <br>
             <table width="100%">
                 <tr>

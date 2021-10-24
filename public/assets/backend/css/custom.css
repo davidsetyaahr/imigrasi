@@ -550,5 +550,15 @@ a:hover {
 .card-jadwal .jadwal-clicked{
 	background: #3c4099;
 	color : white;
-
+}
+.page-link {
+	color :#3c4099;
+}
+.page-item.active .page-link {
+	background: #3c4099;
+	color : white;
+    border-color: #3c4099;
+}
+.page-item:first-child .page-link,.page-item:last-child .page-link{
+	border-radius :0px;
 }

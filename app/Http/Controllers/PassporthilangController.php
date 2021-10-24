@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 class PassporthilangController extends Controller
 
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['philang'] = \DB::table('pengajuan as p')->select('p.id_pengajuan', 'p.nama','p.tipe','p.email','p.no_hp','p.nik','p.jenis_kelamin', 'p.tgl_pengajuan', 'p.status')->where([['p.status', '=','0'], ['p.tipe', '=','PHilang']])->get();
+        $filter = [['p.status', '=','0'], ['p.tipe', '=','PHilang']];
+        if($request->get('key')){
+            array_push($filter,['p.nama','like','%'.$request->get('key').'%']);
+        }
+        $data['philang'] = \DB::table('pengajuan as p')->select('p.id_pengajuan', 'p.nama','p.tipe','p.email','p.no_hp','p.nik','p.jenis_kelamin', 'p.tgl_pengajuan', 'p.status')->where($filter)->paginate(25);
 
         return view('backend/passport-hilang/p-hilang', $data);
     }

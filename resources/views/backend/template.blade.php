@@ -109,6 +109,14 @@
               <span>Arsip Pemeriksaan</span></a
             >
           </li>
+          @if(auth()->user()->level == 1)
+          <li class="nav-item {{Request::segment(1) == 'pegawai' ? 'active' : ''}}">
+            <a class="nav-link" href="{{url('pegawai')}}">
+              <i class="fas fa-fw fa-users"></i>
+              <span>Management Pegawai</span></a
+            >
+          </li>
+          @endif
           <!-- Sidebar Toggler (Sidebar) -->
           <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -153,10 +161,9 @@
 
             <div class="topbar-divider d-none d-sm-block"></div>
             <!-- Nav Item - User Information -->
-            <span class="my-auto">{{ Auth::user()->name }}</span>
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{\Auth::user()->nama}}</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{\Auth::user()->email}}</span>
                 <i class="fa fa-user"></i>
               </a>
               <!-- Dropdown - User Information -->
@@ -216,7 +223,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright 2020 - <a href="https://limadigital.id" target="_blank">LIMA Digital</a></span>
+            <span>Copyright {{date('Y')}} - <a href="#" target="_blank">PAPALASAK</a></span>
           </div>
         </div>
       </footer>

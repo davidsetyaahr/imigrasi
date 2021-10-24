@@ -70,6 +70,7 @@ class PengajuanController extends Controller
         $pengajuan->jenis_kelamin = $request->input('jenis_kelamin');
         $pengajuan->tgl_pengajuan = date('Y-m-d');
         $pengajuan->no_pemeriksaan = 0;
+        $pengajuan->id_petugas = 0;
         $pengajuan->status = '0';
         $pengajuan->save();
 
