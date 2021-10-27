@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 class PassportrusakController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['prusak'] = \DB::table('pengajuan as p')->select('p.id_pengajuan', 'p.nama','p.tipe','p.email','p.no_hp','p.nik','p.jenis_kelamin', 'p.tgl_pengajuan', 'p.status')->where([['p.status', '=','0'], ['p.tipe', '=','PRusak']])->get();
+        $filter = [['p.status', '=','0'], ['p.tipe', '=','PRusak']];
+        if($request->get('key')){
+            array_push($filter,['p.nama','like','%'.$request->get('key').'%']);
+        }
+
+        $data['prusak'] = \DB::table('pengajuan as p')->select('p.id_pengajuan', 'p.nama','p.tipe','p.email','p.no_hp','p.nik','p.jenis_kelamin', 'p.tgl_pengajuan', 'p.status')->where($filter)->paginate(25);
         return view('backend/passport-rusak/p-rusak', $data);
     }
     function edit($id){

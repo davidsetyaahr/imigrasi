@@ -8,6 +8,7 @@ use App\Http\Controllers\PassportrusakController;
 use App\Http\Controllers\ArsippemeriksaanController;
 use App\Http\Controllers\RekapController;
 use App\Http\Controllers\PemeriksaanController;
+use App\Http\Controllers\PegawaiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,4 +55,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/', [ArsippemeriksaanController::class,'index']);
         Route::post('delete', [ArsippemeriksaanController::class,'delete']);
     });
+    Route::get('pegawai/reset/{id_user}', [PegawaiController::class,'reset']);
+    Route::resource('pegawai', PegawaiController::class);
 });

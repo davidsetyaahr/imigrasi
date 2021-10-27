@@ -135,9 +135,16 @@ $(document).ready(function() {
 	});
 	$("#submitConfirm").submit(function(e) {
         e.preventDefault();
-		var id = $(this).attr("id");
+        submitConfirm($(this))
+	});
+	$(".submitConfirm").submit(function(e) {
+        e.preventDefault();
+        submitConfirm($(this))
+	});
+    function submitConfirm(params) {
+		var id = params.attr("id");
         $(".loading").removeClass("show");
-        var info = $(this).data('info')
+        var info = params.data('info')
 		swal(
 			{
 				title: "Apakah Anda Yakin?",
@@ -153,7 +160,8 @@ $(document).ready(function() {
                 $(".loading").addClass("show");
 			}
 		);
-	});
+        
+    }
 
     $(".sendParamToModal").click(function() {
         var data = $(this).data('param')

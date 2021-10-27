@@ -9,7 +9,7 @@ class ArsippemeriksaanController extends Controller
 {
     public function index()
     {
-        $data['arsip'] = PengajuanModel::where('tgl_pemeriksaan','!=',NULL)->get();
+        $data['arsip'] = PengajuanModel::where('tgl_pemeriksaan','!=',NULL)->paginate(25);
         return view('backend/arsip-pemeriksaan/arsip-pemeriksaan',$data);
     }
     public function delete(request $request)

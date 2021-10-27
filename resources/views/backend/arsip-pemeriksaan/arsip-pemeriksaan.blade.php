@@ -49,6 +49,9 @@
             </tbody>
             </table>
         </div>
+        <div class="d-flex justify-content-end">
+            {{$arsip->appends(Request::all())->links('backend.pagination.custom')}}
+        </div>        
         <div class="row" id="penjadwalan" style="display: none">
             <div class="col-md-2">
                 <button type="submit" class="btn btn-danger"><span class="fa fa-trash"></span> Hapus</button>
