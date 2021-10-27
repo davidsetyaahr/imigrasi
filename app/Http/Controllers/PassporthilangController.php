@@ -24,8 +24,7 @@ class PassporthilangController extends Controller
            'NIK' => $request->NIK,
            'no_hp' => $request->no_hp,
            'email' => $request->email,
-           'Alamat' => $request->alamat,
-           'tipe' => $request->tipe
+           'Alamat' => $request->alamat
         ]);
         return redirect('pengajuan-passport-hilang')->with('status', 'Data berhasil diperbarui.');
     }
