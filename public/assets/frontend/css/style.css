@@ -29,7 +29,10 @@ body {
 }
 .card img{
     margin : auto;
-    width: 70%;
+    width: 100%;
+    object-fit: cover;
+    /* max-height: 171px; */
+    border-radius: .25rem;
 }
 .card.active{
     border : 3px solid var(--blue);

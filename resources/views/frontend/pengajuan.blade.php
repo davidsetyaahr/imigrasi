@@ -58,7 +58,7 @@
                             </button>
                         </div>
                         @endif
-                        <img src="{{asset('frontend/img/logo-imigrasi.png')}}" width="80px" alt="" srcset="">
+                        <img src="{{asset('frontend/img/logo.png')}}" width="120px" alt="" srcset="">
                         <h4 class="mt-3 color-blue font-weight-bold">Selamat Datang Di <br> Aplikasi PAPALASAK <br> (Penggantian Paspor Hilang dan Rusak) </h4>
                     </div>
                 </div>
@@ -68,16 +68,14 @@
                     <div class="row mt-2 justify-content-center">
                         <div class="col-md-3 col-6">
                             <div data-tipe="PHilang" class="card p-3 text-center {{$classPHilang}}">
-                                <img src="{{asset('frontend/img/passport1.png')}}" alt="">
-                                <br>
-                                <h6 class="mb-0">Paspor Hilang</h6>
+                                <img src="{{asset('frontend/img/paspor1.jpg')}}" alt="">
+                                <h6 class="mb-0 mt-3">Paspor Hilang</h6>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div data-tipe="PRusak" class="card p-3 text-center {{$classPRusak}}">
-                                <img src="{{asset('frontend/img/passport2.png')}}" alt="">
-                                <br>
-                                <h6 class="mb-0">Paspor Rusak</h6>
+                                <img src="{{asset('frontend/img/paspor2.jpg')}}" alt="">
+                                <h6 class="mb-0 mt-3">Paspor Rusak</h6>
                             </div>
                         </div>
                     </div>

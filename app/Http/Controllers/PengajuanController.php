@@ -83,7 +83,7 @@ class PengajuanController extends Controller
             \DB::table('jawab_pertanyaan')->insert($jawabPertanyaan);
         }
 
-        return redirect()->back()->with('status', '<b>Data Berhasil Dikirim.</b> <br> Data anda akan kami proses, kami akan memberikan informasi selanjutnya via email terkait jadwal pemeriksaan');
+        return redirect()->back()->with('status', '<b>Data Berhasil Dikirim.</b> <br> Data anda akan kami proses, kami akan memberikan informasi selanjutnya via email terkait jadwal pemeriksaan.<br> <b>Note: Kepada pemohon diharapkan membawa dokumen asli dan foto copy: KTP,Kartu Keluarga,Akte Lahir/Ijazah/Buku Nikah dan Surat Keterangan Hilang Kepolisian</b>');
 
     }
 

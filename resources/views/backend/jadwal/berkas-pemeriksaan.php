@@ -45,11 +45,11 @@
                         <img src="<?= asset('backend/img/logo.png') ?>" width="100%" alt="">
                     </td>
                     <td width="80%" align="center" style="font-size:11px">
-                        KEMENTRIAN HUKUM DAN HAK ASASI MANUSIA
+                        KEMENTeRIAN HUKUM DAN HAK ASASI MANUSIA
                         <br>
                         REPUBLIK INDONESIA
                         <br>
-                        <b>KANTOR IMIGRASI KELAS II TPI JEMBER</b>
+                        <b>KANTOR IMIGRASI KELAS I TPI JEMBER</b>
                         <br>
                         Jalan Letjend D.I Panjaitan Nomor 47, Jember 68121
                         <br>
@@ -135,9 +135,9 @@
                         <br>
                         <br>
                         <br>
-                        Rizky Nur Adiyat
+                        <?= ucwords($detail->nama_petugas) ?>
                         <br>
-                        NIP. 197812242006041001
+                        NIP. <?= $detail->nip ?>
                     </td>
                 </tr>
             </table>
