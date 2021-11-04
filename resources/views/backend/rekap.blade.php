@@ -15,7 +15,7 @@
                                     <span class="fa fa-calendar"></span>
                                     </span>
                                 </div>
-                                <input type="text" name="dari" class="datepicker form-control" id="" autocomplete="off">
+                                <input type="text" name="dari" class="datepicker form-control" id="" autocomplete="off" value="{{isset($_GET['dari']) ? $_GET['dari'] : ''}}">
                             </div>                        
                         </div>
                         <div class="col-md-4">
@@ -26,15 +26,15 @@
                                         <span class="fa fa-calendar"></span>
                                     </span>
                                 </div>
-                                <input type="text" name="sampai" class="datepicker form-control" id="" autocomplete="off">
+                                <input type="text" name="sampai" class="datepicker form-control" id="" autocomplete="off" value="{{isset($_GET['dari']) ? $_GET['sampai'] : ''}}">
                             </div>                        
                         </div>
                         <div class="col-md-4">
                             <label for="">Tipe Pengajuan</label>
                             <select name="tipe" id="" class="form-control">
-                                <option value="all">Semua Tipe Pengajuan</option>
-                                <option value="PHilang">Paspor Hilang</option>
-                                <option value="PHilang">Paspor Rusak</option>
+                                <option value="all" <?= isset($_GET['tipe']) && $_GET['tipe']=='all' ? 'selected' : '' ?>>Semua Tipe Pengajuan</option>
+                                <option value="PHilang" <?= isset($_GET['tipe']) && $_GET['tipe']=='PHilang' ? 'selected' : '' ?>>Paspor Hilang</option>
+                                <option value="PRusak" <?= isset($_GET['tipe']) && $_GET['tipe']=='PRusak' ? 'selected' : '' ?>>Paspor Rusak</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -49,7 +49,24 @@
         <?php 
             if(isset($rekap)){
         ?>
-            <div class="table-responsive mt-4">
+        <br>
+        <?php 
+            if($_GET['tipe']=='all'){
+        ?>
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <div class="card card-dashboard py-2">
+                        <div class="card-body">    
+                            <figure class="highcharts-figure">
+                                <div id="container"></div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+            <b class="mt-4 text-primary">Total : <?= count($rekap) ?> Data BAP</b>
+            <div class="table-responsive">
                 <table class="table table-custom">
                     <thead>
                         <tr>
@@ -84,4 +101,62 @@
         ?>
     </div>
 </div>
+<?php 
+if(isset($rekap) && $_GET['tipe']=='all'){
+?>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script>
+    Highcharts.setOptions({
+     colors: ['#50B432', '#3c4099',]
+    });    
+    Highcharts.chart('container', {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: "Persentase PAPALASAK"
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.y} BAP</b>'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+          }
+        }
+      },
+      series: [{
+        name: 'Jumlah',
+        colorByPoint: true,
+        data: [{
+          name: 'Paspor Hilang',
+          y: <?= $chartHilang ?>,
+          sliced: true,
+          selected: true
+        }, {
+            name: 'Paspor Rusak',
+            y: <?= $chartRusak ?>,
+        }]
+      }]
+    });    
+</script>
+<?php
+    }
+?>
+
 @endsection

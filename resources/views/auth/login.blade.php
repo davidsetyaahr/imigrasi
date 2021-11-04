@@ -28,12 +28,12 @@
                             <form id="FormLogin" method="post" class="" action="{{ route('login') }}">
                                 @csrf
         
-                                    <label for="">Email</label>
+                                    <label for="">NIP</label>
                                     <div class="form-underline">
-                                        <input type="email" name="email" placeholder="Masukkan Email" class="@error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input type="nip" name="nip" placeholder="Masukkan NIP" class="@error('nip') is-invalid @enderror" value="{{ old('nip') }}" required autocomplete="nip" autofocus>
                                         <span class="fa fa-user"></span>
                                     </div>
-                                    @error('email')
+                                    @error('nip')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="copyright mt-4">
-        Copyright 2020 - <a href="https://limadigital.id/" target="_blank">LIMA Digital</a>
+        Copyright 2021 - <a href="#" target="_blank">PAPALASAK</a>
     </div>
 </body>
 </html>

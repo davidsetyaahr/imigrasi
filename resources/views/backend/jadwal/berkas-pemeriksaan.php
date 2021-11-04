@@ -93,14 +93,9 @@
                     $key++;
             ?>
                 <p>
-                    <?= sprintf("%02s",$key) ?>
-                    <span style="padding-left:20px">
-                        <?= $value->pertanyaan ?>
-                    </span>
-                        <br>
-                    <span style="padding-left:40px">
-                        <?= sprintf("%02s",$key).".".$value->jawaban ?>
-                    </span>
+                    <?= sprintf("%02s",$key)."&nbsp;&nbsp;".$value->pertanyaan ?>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= sprintf("%02s",$key).".".$value->jawaban ?>
                 </p>
             <?php
                 }

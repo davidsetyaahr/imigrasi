@@ -102,7 +102,7 @@
             <div class="tab-content custom-tab-content" id="nav-tabContent">
                 <div class="tab-pane  px-4 py-4 fade show active" id="nav-datadiri" role="tabpanel" aria-labelledby="nav-datadiri-tab">
                     <label for="">Nama Lengkap (Sesuai Paspor)</label>
-                    <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror">
+                    <input type="text" value="{{old('nama')}}" name="nama" class="form-control @error('nama') is-invalid @enderror">
                     @error('nama')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -110,7 +110,7 @@
                     @enderror
                     <br>
                     <label for="">NIK</label>
-                    <input type="text" name="nik" class="form-control  @error('nik') is-invalid @enderror">
+                    <input type="text" name="nik" value="{{old('nik')}}" class="form-control  @error('nik') is-invalid @enderror">
                     @error('nik')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -118,7 +118,7 @@
                     @enderror
                     <br>
                     <label for="">Tempat Lahir</label>
-                    <input type="text" name="tempat_lahir" class="form-control @error('tempat_lahir') is-invalid @enderror">
+                    <input type="text" name="tempat_lahir" value="{{old('tempat_lahir')}}" class="form-control @error('tempat_lahir') is-invalid @enderror">
                     @error('tempat_lahir')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -126,7 +126,7 @@
                     @enderror
                     <br>
                     <label for="">Tanggal Lahir</label>
-                    <input type="date" name="tgl_lahir" class="form-control @error('tgl_lahir') is-invalid @enderror">
+                    <input type="date" name="tgl_lahir" value="{{old('tgl_lahir')}}" class="form-control @error('tgl_lahir') is-invalid @enderror">
                     @error('tgl_lahir')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -135,12 +135,12 @@
                     <br>
                     <label for="">Agama</label>
                     <select name="agama" id="" class="form-control @error('agama') is-invalid @enderror">
-                        <option>Islam</option>
-                        <option>Kristen</option>
-                        <option>Katolik</option>
-                        <option>Hindu</option>
-                        <option>Budha</option>
-                        <option>Kong Hu Chu</option>
+                        <option {{old('agama')=='Islam' ? 'selected' : ''}}>Islam</option>
+                        <option {{old('agama')=='Kristen' ? 'selected' : ''}}>Kristen</option>
+                        <option {{old('agama')=='Katolik' ? 'selected' : ''}}>Katolik</option>
+                        <option {{old('agama')=='Hindu' ? 'selected' : ''}}>Hindu</option>
+                        <option {{old('agama')=='Budha' ? 'selected' : ''}}>Budha</option>
+                        <option {{old('agama')=='Kong Hu Chu' ? 'selected' : ''}}>Kong Hu Chu</option>
                     </select>
                     @error('agama')
                         <span class="invalid-feedback" role="alert">
@@ -150,11 +150,11 @@
                     <br>
                     <label for="">Status Perkawinan</label>
                     <select name="status_pernikahan" id="" class="form-control @error('status_pernikahan') is-invalid @enderror">
-                        <option>Belum Kawin</option>
-                        <option>Sudah Kawin</option>
-                        <option>Duda</option>
-                        <option>Janda</option>
-                        <option>Cerai Mati</option>
+                        <option {{old('status_pernikahan')=='Belum Kawin' ? 'selected' : ''}}>Belum Kawin</option>
+                        <option {{old('status_pernikahan')=='Sudah Kawin' ? 'selected' : ''}}>Sudah Kawin</option>
+                        <option {{old('status_pernikahan')=='Duda' ? 'selected' : ''}}>Duda</option>
+                        <option {{old('status_pernikahan')=='Janda' ? 'selected' : ''}}>Janda</option>
+                        <option {{old('status_pernikahan')=='Cerai Mati' ? 'selected' : ''}}>Cerai Mati</option>
                     </select>
                     @error('status_pernikahan')
                         <span class="invalid-feedback" role="alert">
@@ -163,7 +163,7 @@
                     @enderror
                     <br>
                     <label for="">Pekerjaan</label>
-                    <input type="text" name="pekerjaan" class="form-control  @error('pekerjaan') is-invalid @enderror">
+                    <input type="text" value="{{old('pekerjaan')}}" name="pekerjaan" class="form-control  @error('pekerjaan') is-invalid @enderror">
                     @error('pekerjaan')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -171,7 +171,7 @@
                     @enderror
                     <br>
                     <label for="">Email</label>
-                    <input type="email" name="email" class="form-control  @error('email') is-invalid @enderror">
+                    <input type="email" value="{{old('email')}}" name="email" class="form-control  @error('email') is-invalid @enderror">
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -179,7 +179,7 @@
                     @enderror
                     <br>
                     <label for="">No Hp</label>
-                    <input type="text" name="no_hp" class="form-control  @error('no_hp') is-invalid @enderror">
+                    <input type="text" value="{{old('no_hp')}}" name="no_hp" class="form-control  @error('no_hp') is-invalid @enderror">
                     @error('no_hp')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -187,7 +187,7 @@
                     @enderror
                     <br>
                     <label for="">Alamat</label>
-                    <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" rows="5"></textarea>
+                    <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" rows="5">{{old('alamat')}}</textarea>
                     @error('alamat')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -196,8 +196,8 @@
                     <br>
                     <label for="">Jenis Kelamin</label>
                     <br>
-                    <input type="radio" name="jenis_kelamin" id="lk" value="laki-laki"> <label for="lk"> Laki Laki</label> &nbsp;
-                    <input type="radio" name="jenis_kelamin" id="pr" value="perempuan"> <label for="pr"> Perempuan</label>
+                    <input type="radio" name="jenis_kelamin" id="lk" value="laki-laki" {{old('jenis_kelamin')=='laki-laki' ? 'checked' :''}}> <label for="lk"> Laki Laki</label> &nbsp;
+                    <input type="radio" name="jenis_kelamin" id="pr" value="perempuan" {{old('jenis_kelamin')=='perempuan' ? 'checked' : ''}}> <label for="pr"> Perempuan</label>
                     @error('jenis_kelamin')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -209,7 +209,7 @@
                     <div id="pRusak" style="display: {{$displayPertanyaanPRusak}}">
                         @foreach ($pRusak as $data)
                             <label for="">{{$data->pertanyaan}}</label>
-                            <input type="text" name="soal_rusak{{$data->id_pertanyaan}}" class="form-control @error('soal_rusak'.$data->id_pertanyaan) is-invalid @enderror">
+                            <input type="text" value="{{old('soal_rusak'.$data->id_pertanyaan)}}" name="soal_rusak{{$data->id_pertanyaan}}" class="form-control @error('soal_rusak'.$data->id_pertanyaan) is-invalid @enderror">
                             @error('soal_rusak'.$data->id_pertanyaan)
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -221,7 +221,7 @@
                     <div id="pHilang" style="display: {{$displayPertanyaanPHilang}}">
                         @foreach ($pHilang as $data)
                             <label for="">{{$data->pertanyaan}}</label>
-                            <input type="text" name="soal_hilang{{$data->id_pertanyaan}}" class="form-control @error('soal_hilang'.$data->id_pertanyaan) is-invalid @enderror">
+                            <input type="text" value="{{old('soal_hilang'.$data->id_pertanyaan)}}" name="soal_hilang{{$data->id_pertanyaan}}" class="form-control @error('soal_hilang'.$data->id_pertanyaan) is-invalid @enderror">
                             @error('soal_hilang'.$data->id_pertanyaan)
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('pemeriksaan/diperiksa', [PemeriksaanController::class,'diperiksa']);
     Route::get('pemeriksaan/berkas/{id_pengajuan}', [PemeriksaanController::class,'berkas']);
     Route::group(['prefix' => 'jadwal'], function () {
+        Route::get('send-email/{id_jadwal}', [PenjadwalanController::class,'sendEmail']);
         Route::get('/', [PenjadwalanController::class,'index']);
         Route::get('detail', [PenjadwalanController::class,'detail']);
         Route::get('batal/{id}', [PenjadwalanController::class,'batal']);

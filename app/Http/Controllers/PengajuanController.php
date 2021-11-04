@@ -72,6 +72,7 @@ class PengajuanController extends Controller
         $pengajuan->no_pemeriksaan = 0;
         $pengajuan->id_petugas = 0;
         $pengajuan->status = '0';
+        $pengajuan->send_email = '0';
         $pengajuan->save();
 
         foreach ($pertanyaan as $key => $value) {

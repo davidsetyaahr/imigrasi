@@ -29,15 +29,52 @@ class PenjadwalanController extends Controller
     }
     public function store(request $request)
     {
-        foreach ($request->input('id_pengajuan') as $key => $value) {
-            $arr = array(
-                'tanggal' => $request->input('tanggal'),
-                'id_pengajuan' => $value
-            );
-
-            PenjadwalanModel::insert($arr);
-            \DB::table('pengajuan')->where('id_pengajuan',$value)->update(['status' => '1']);
+        try{
+            foreach ($request->input('id_pengajuan') as $key => $value) {
+                $penjadwalan = new PenjadwalanModel;
+                $penjadwalan->tanggal = $request->input('tanggal');
+                $penjadwalan->id_pengajuan = $value;
+                $penjadwalan->save();
+    
+                \DB::table('pengajuan')->where('id_pengajuan',$value)->update(['status' => '1','send_email' => '1']);
+                $this->sendEmail($penjadwalan->id);
+            }
+            return redirect()->back()->withStatus('Penjadwalan Berhasil Dilakukan');
         }
-        return redirect()->back()->withStatus('Penjadwalan Berhasil Dilakukan');
+        catch(\Exception $e){
+            return redirect()->back()->withError('Terjadi kesalahan : '. $e->getMessage());
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError('Terjadi kesalahan pada database : '. $e->getMessage());
+        }
+
+    }
+    public function sendEmail($id_jadwal)
+    {
+        $getJadwal = \DB::table('penjadwalan as j')->select('j.tanggal','p.email')->join('pengajuan as p','j.id_pengajuan','p.id_pengajuan')->where('j.id_jadwal',$id_jadwal)->first();
+        $bulan = array (
+            1 =>   'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+        $tgl = explode('-', $getJadwal->tanggal);       
+        $details = [
+            'tanggal' => $tgl[2].' '.$bulan[(int)$tgl[1]].' '.$tgl[0],
+            'tempat' => 'KANTOR IMIGRASI KELAS I TPI JEMBER'
+        ];
+       
+        \Mail::to($getJadwal->email)->send(new \App\Mail\SendEmail($details));
+       
+        // dd("Email is Sent.");
+    
     }
 }

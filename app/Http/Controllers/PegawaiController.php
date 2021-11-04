@@ -86,6 +86,7 @@ class PegawaiController extends Controller
         
         $user = new User;
         $user->id_petugas = $pegawai->id;
+        $user->nip = $request->input('nip');
         $user->email = $request->input('email');
         $user->password = \Hash::make($request->input('password'));
         $user->level = $request->input('level');
@@ -159,8 +160,9 @@ class PegawaiController extends Controller
             'jabatan' => $request->input('jabatan'),
         );
         \DB::table('petugas')->where('id_petugas',$id)->update($petugas);
-
+        
         $user = array(
+            'nip' => $request->input('nip'),
             'email' => $request->input('email'),
             'level' => $request->input('level'),
         );
